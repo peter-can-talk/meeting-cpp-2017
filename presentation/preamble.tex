@@ -80,24 +80,48 @@
 \lstset{%
   inputencoding=utf8,
 	basicstyle=\ttfamily\footnotesize,
-	language=C++,
+	language=Python,
 	aboveskip=3mm,
 	belowskip=3mm,
 	showstringspaces=false,
 	columns=flexible,
 	numbers=none,
 	numberstyle=\tiny\color{red},
-	keywordstyle=\color{magenta},
+	keywordstyle=\color{ProcessBlue},
 	commentstyle=\color{gray},
 	stringstyle=\color{stringgreen},
   emphstyle=\color{brightred},
 	breaklines=true,
 	breakatwhitespace=true,
 	tabsize=2,
-  escapeinside={@}{@},
-  emph={\#include},
-  alsoletter={\#}
+  escapeinside={@}{@}
 }
+
+\makeatletter
+\lstdefinelanguage{pseudoML}{
+  sensitive = true,
+  classoffset=0,
+  morekeywords={
+    Matrix, Scalar, scalar
+  },
+  classoffset=1,
+  keywordstyle=\color{magenta},
+  morekeywords={
+    matmul, evaluate, if_clause, while_loop, if, else, while
+  },
+  literate=%
+    {0}{{{\color{red}0}}}1
+    {1}{{{\color{red}1}}}1
+    {2}{{{\color{red}2}}}1
+    {3}{{{\color{red}3}}}1
+    {4}{{{\color{red}4}}}1
+    {5}{{{\color{red}5}}}1
+    {6}{{{\color{red}6}}}1
+    {7}{{{\color{red}7}}}1
+    {8}{{{\color{red}8}}}1
+    {9}{{{\color{red}9}}}1
+}
+\makeatother
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 	CONFIG

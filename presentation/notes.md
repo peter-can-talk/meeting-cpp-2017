@@ -57,6 +57,15 @@ To do this, I first want to define an OSI Model for Neural Networks:
 
 - Computational graphs, forward backward passes, mapped to Devices
 - Distributed computing, downpour sgd
+- Static vs Dynamic Graphs
+  * Static:
+    + Declarative Programming Model
+    + Static shapes and sizes, defined once
+    + Can be optimized/compiled
+  * Dynamic:
+    + Imperative Programming Model
+    + Dynamic shapes and sizes, defined by run
+
 
 ### Op Layer
 

@@ -1,0 +1,116 @@
+% !TEX root = ../../presentation.tex
+
+\begin{slide}{Model Layer}
+\vspace{0.5cm}
+
+\begin{tikzpicture}[thick]
+  \tikzset{box/.style={draw, rectangle, text width=1.75cm, text height=0.75cm}}
+
+  % Model
+  \path (0, 0) coordinate (i) node {\includegraphics[scale=0.1]{cppcon-logo}};
+  \path (2.5, 0) coordinate [box] (E) node {Encoder};
+  \path (4.5, 0) coordinate (z) node {$\mathbf{z}$};
+  \path (6.5, 0) coordinate [box] (D) node {Decoder};
+  \path (9, 0) coordinate (r)
+        node {\includegraphics[scale=0.1]{cppcon-logo-blurry}};
+
+  % Edges
+  \draw [->, shorten <=0.75cm] (i) -- (E);
+  \draw [->, shorten >=0.25cm] (E) -- (z);
+  \draw [->, shorten <=0.25cm] (z) -- (D);
+  \draw [->, shorten >=0.75cm] (D) -- (r);
+
+  % Label
+  \draw (4.5, -1.2) node {\textbf{Autoencoder}};
+\end{tikzpicture}
+
+\vspace{0.5cm}
+
+\begin{tikzpicture}[thick]
+  \tikzset{box/.style={draw, rectangle, text width=1.75cm, text height=0.75cm}}
+
+  % Model
+  \path (0, 0) coordinate (z) node {$\mathbf{z}$};
+  \path (1.75, 0) coordinate [box] (G) node {Generator};
+  \path (4.25, -0.8) coordinate (f)
+        node {\includegraphics[scale=0.1]{cppcon-logo-blurry}};
+  \path (4.25, +0.8) coordinate (r)
+        node {\includegraphics[scale=0.1]{cppcon-logo}};
+  \path (7.25, 0) coordinate [box, text width=2.2cm] (D) node {Discriminator};
+  \path (5.45, 0) coordinate (_);
+  \path (9.75, 0) coordinate (P) node {$\mathbf{P(\text{real})}$};
+
+  % Edges
+  \draw [->, shorten <=0.25cm] (z) -- (G);
+  \draw [->, shorten >=0.7cm] (G) -- (f);
+  \draw [shorten <=0.775cm] (f) -- (_);
+  \draw [shorten <=0.75cm] (r) -- (_);
+  \draw [->] (_) -- (D);
+  \draw [->, shorten >=0.75cm] (D) -- (P);
+
+  % Label
+  \draw (5.5, -2.2) node {\textbf{Generative Adversarial Networks (GAN)}};
+\end{tikzpicture}
+\end{slide}
+
+\begin{slide}{Generative Adversarial Networks}
+$$
+\underbrace{\mathbf{z} \sim P_{\text{noise}}(\mathbf{z})}_\text{Noise}
+\hspace{0.4cm}
+\underbrace{\mathbf{x} \sim P_{\text{data}}(\mathbf{x})}_\text{Real Images}
+$$
+\vspace{0.1cm}
+$$
+\underbrace{G(\mathbf{z})}_\text{Fake Images}
+\hspace{0.4cm}
+\underbrace{D(\mathbf{x})}_\text{Probability of Being Real}
+$$
+
+\only<2>{
+$$
+\frac{%
+\int_{-\infty}^\infty
+    \hat f(\xi)\,e^{2 \pi i \xi x}
+    \,d\xi + \sum_{n=0}^\infty \frac{f^{(n)}(a)}{n!} + {e^2 \brace \pi}
+}{%
+\frac{1}{\sqrt{2\pi\hbar}}\int_{\text{all space}}e^{-i\mathbf{p}\cdot r/\hbar}\Psi(\mathbf{r}, s_z, t)d^3\mathbf{r} - \frac{1}{\sqrt{2\pi\sigma^2}} \cdot e^{-\frac{(x - \mu)^2}{2\sigma^2}}
+}
+$$
+}
+
+\only<3->{
+$$
+\min_G \max_D\, \log(D(\mathbf{x})) + \log(1 - D(G(\mathbf{z})))
+$$
+}
+\end{slide}
+
+\begin{slide}{Generative Adversarial Networks}
+  \includegraphics[scale=0.45]{faces}
+
+  \scriptsize
+  BEGAN: Berthelot et al. (2017)
+\end{slide}
+
+\begin{slide}{Generative Adversarial Networks}
+  \includegraphics[scale=0.3]{bedrooms}
+
+  \scriptsize
+  LSGAN: Mao et al. (2016)
+\end{slide}
+
+\begin{slide}{Generative Adversarial Networks}
+  \includegraphics[scale=0.235]{face-interpolations}
+
+  \scriptsize
+  BEGAN: Berthelot et al. (2017)
+\end{slide}
+
+\begin{slide}{Generative Adversarial Networks}
+  \includegraphics[scale=0.3]{mnist1}
+
+  \includegraphics[scale=0.3]{mnist2}
+
+  \scriptsize
+  InfoGAN: Chen et al. (2016)
+\end{slide}
