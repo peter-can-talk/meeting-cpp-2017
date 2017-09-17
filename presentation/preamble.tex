@@ -44,6 +44,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{mathdots}
 \usepackage{blkarray}
 \usepackage{gensymb}
 \usepackage{relsize}
@@ -180,6 +182,24 @@
 }
 
 \newcommand{\onesquare}[2]{ \numbersquare{#1}{1}{#2} }
+
+\newcommand{\xyplane}[2]{
+  \begin{scope}[canvas is xy plane at z=#1]
+    #2
+  \end{scope}
+}
+
+\newcommand{\xzplane}[2]{
+  \begin{scope}[canvas is xz plane at y=#1]
+    #2
+  \end{scope}
+}
+
+\newcommand{\yzplane}[2]{
+  \begin{scope}[canvas is yz plane at x=#1]
+    #2
+  \end{scope}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 	NEW ENVIRONMENTS
