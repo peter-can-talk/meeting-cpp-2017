@@ -32,7 +32,8 @@ particular problems of that subdomain.
 
 To do this, I first want to define an OSI Model for Neural Networks:
 
-6. Task layer (classification, regression, translation, synthesis)
+7. Task layer (classification, regression, translation, synthesis)
+6. Model layer (model architectures that solve a task)
 5. Layer layer (basic deep learning building blocks)
 4. Graph layer (computation graphs)
 3. Op layer (algorithms)

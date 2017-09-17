@@ -1,6 +1,21 @@
 % !TEX root = ../presentation.tex
-% Table of Contents
+% Intro
 
-\begin{slide}{}
-  \includegraphics[scale=1]{god-lol}
+\begin{slide}{Strategy}
+  \begin{tikzpicture}[thick]
+    % Task Layer
+    \foreach \y/\l/\c in {1/Hardware/Red,%
+                          2/Kernel/llvmblue,%
+                          3/Op/ProcessBlue,%
+                          4/Graph/orange,%
+                          5/Layer/Green,%
+                          6/Model/Goldenrod,
+                          7/Task/Purple} {
+      \draw [fill=\c] (0, {\y * 0.8})
+            rectangle ++(3, 0.8) node [midway] {\l};
+    }
+  \end{tikzpicture}
+
+  \vspace{0.4cm}
+  \textbf{OSI Model of Machine Learning}
 \end{slide}

@@ -10,7 +10,7 @@
 \definecolor{llvmblue}{RGB}{60, 66, 80}
 
 \usetheme{default}
-\usecolortheme[named=llvmblue]{structure}
+\usecolortheme[named=orange]{structure}
 \setbeamertemplate{sections/subsections in toc}[sections numbered]
 \setbeamertemplate{items}[default]
 \usefonttheme[onlymath]{serif}
@@ -20,6 +20,7 @@
 % LANGUAGE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\usepackage{CJKutf8}
 \usepackage[utf8]{inputenc}
 \usepackage[american]{babel}
 
@@ -33,6 +34,7 @@
 \usepackage{textcomp}
 \usepackage{anyfontsize}
 \usepackage{cancel}
+\usepackage{tcolorbox}
 
 \usepackage{ulem}
 \renewcommand{\ULthickness}{.6pt}%
@@ -95,59 +97,6 @@
   alsoletter={\#}
 }
 
-% http://lists.llvm.org/pipermail/llvm-dev/attachments/20120602/58156cce/attachment.tex
-\makeatletter
-\lstdefinelanguage{llvm}{
-  morecomment = [l]{;},
-  morestring=[b]",
-  sensitive = true,
-  classoffset=0,
-  morekeywords={
-    define, declare, global, constant,
-    internal, external, private,
-    linkonce, linkonce_odr, weak, weak_odr, appending,
-    common, extern_weak,
-    thread_local, dllimport, dllexport,
-    hidden, protected, default,
-    except, deplibs,
-    volatile, fastcc, coldcc, cc, ccc,
-    x86_stdcallcc, x86_fastcallcc,
-    ptx_kernel, ptx_device,
-    signext, zeroext, inreg, sret, nounwind, noreturn,
-    nocapture, byval, nest, readnone, readonly, noalias, uwtable,
-    inlinehint, noinline, alwaysinline, optsize, ssp, sspreq,
-    noredzone, noimplicitfloat, naked, alignstack,
-    module, asm, align, tail, to,
-    addrspace, section, alias, sideeffect, c, gc,
-    target, datalayout, triple,
-    blockaddress
-  },
-  classoffset=1,
-  keywordstyle=\color{ProcessBlue},
-  morekeywords={
-    fadd, sub, fsub, mul, fmul,
-    sdiv, udiv, fdiv, srem, urem, frem,
-    and, or, xor,
-    icmp, fcmp,
-    eq, ne, ugt, uge, ult, ule, sgt, sge, slt, sle,
-    oeq, ogt, oge, olt, ole, one, ord, ueq, ugt, uge,
-    ult, ule, une, uno,
-    nuw, nsw, exact, inbounds,
-    phi, call, select, shl, lshr, ashr, va_arg,
-    trunc, zext, sext,
-    fptrunc, fpext, fptoui, fptosi, uitofp, sitofp,
-    ptrtoint, inttoptr, bitcast,
-    ret, br, indirectbr, switch, invoke, unwind, unreachable,
-    malloc, alloca, free, load, store, getelementptr,
-    extractelement, insertelement, shufflevector,
-    extractvalue, insertvalue,
-  },
-  alsoletter={\%},
-  keywordsprefix={\%},
-  escapeinside={{,}}
-}
-\makeatother
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 	CONFIG
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -164,7 +113,7 @@
     \vspace*{-15pt}%
     \scriptsize
     Peter Goldsborough\hspace{2cm}%
-    {\small\texttt{clang-useful}}\hfill%
+    {\small\texttt{Deep Learning w/ C++}}\hfill%
     \insertpagenumber}%
 }
 \setbeamertemplate{navigation symbols}{}
