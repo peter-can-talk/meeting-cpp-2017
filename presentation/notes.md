@@ -85,7 +85,7 @@ This is about __algorithms__, kernel layer is about __implementations__
 - Discuss code for CPU/GPU implementations of Convolutions
 - Importance of GEMM and BLAS.
 - Nervana Neon has their own assembly
-quantization
+- quantization
 
 ### Hardware Layer
 
@@ -118,7 +118,6 @@ quantization
 ### Graph Layer
 
 - Now introduce deep learning frameworks: tf and caffe2/pytorch
-- Explain static vs. dynamic graph
 - Explain communication libraries, gloo, mpi
 
 ### Layer Layer
