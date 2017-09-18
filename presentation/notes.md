@@ -69,9 +69,12 @@ To do this, I first want to define an OSI Model for Neural Networks:
 
 ### Op Layer
 
+The last abstraction before code
+
 How are Convolutions implemented (im2col). Fast algorithms for certain operations? -> More research
 
 that softmax paper I have somewhere
+
 
 This is about __algorithms__, kernel layer is about __implementations__
 
@@ -82,6 +85,7 @@ This is about __algorithms__, kernel layer is about __implementations__
 - Discuss code for CPU/GPU implementations of Convolutions
 - Importance of GEMM and BLAS.
 - Nervana Neon has their own assembly
+quantization
 
 ### Hardware Layer
 
