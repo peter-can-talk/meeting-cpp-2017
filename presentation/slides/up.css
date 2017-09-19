@@ -1,16 +1,16 @@
 /*
 Error: Invalid CSS after "% ": expected "{", was "!TEX root = ../..."
-        on line 1 of /Users/goldsborough/Documents/Talks/cppcon-2017/presentation/slides/down.tex
+        on line 1 of /Users/goldsborough/Documents/Talks/cppcon-2017/presentation/slides/up.tex
 
 1: % !TEX root = ../presentation.tex
-2: % Down (Theory)
-3: 
-4: % Task
-5: 
-6: \begin{slide}{Task Layer}
+2: 
+3: % \input{slides/up/hardware.tex}
+4: \input{slides/up/kernel.tex}
+5: \input{slides/up/op.tex}
+6: \input{slides/up/graph.tex}
 
 Backtrace:
-/Users/goldsborough/Documents/Talks/cppcon-2017/presentation/slides/down.tex:1
+/Users/goldsborough/Documents/Talks/cppcon-2017/presentation/slides/up.tex:1
 /Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/scss/parser.rb:1189:in `expected'
 /Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/scss/parser.rb:1125:in `expected'
 /Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/scss/parser.rb:1120:in `tok!'
@@ -34,4 +34,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Invalid CSS after \"% \": expected \"{\", was \"!TEX root = ../...\"\A         on line 1 of /Users/goldsborough/Documents/Talks/cppcon-2017/presentation/slides/down.tex\A \A 1: % !TEX root = ../presentation.tex\A 2: % Down (Theory)\A 3: \A 4: % Task\A 5: \A 6: \begin{slide}{Task Layer}"; }
+  content: "Error: Invalid CSS after \"% \": expected \"{\", was \"!TEX root = ../...\"\A         on line 1 of /Users/goldsborough/Documents/Talks/cppcon-2017/presentation/slides/up.tex\A \A 1: % !TEX root = ../presentation.tex\A 2: \A 3: % \input{slides/up/hardware.tex}\A 4: \input{slides/up/kernel.tex}\A 5: \input{slides/up/op.tex}\A 6: \input{slides/up/graph.tex}"; }

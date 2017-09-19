@@ -1,32 +1,32 @@
 % !TEX root = ../../presentation.tex
 
-% \begin{slide}{Kernel Layer}
-%   \begin{tikzpicture}
-%     \begin{axis}[samples=64, domain=-7:+7]
-%       \addplot[mark=none]{1/(1+exp(-x))};
-%   \end{axis}
-%   \end{tikzpicture}
-%
-%   \textbf{Sigmoid}
-% \end{slide}
+\begin{slide}{Kernel Layer}
+  \begin{tikzpicture}
+    \begin{axis}[samples=64, domain=-7:+7]
+      \addplot[mark=none]{1/(1+exp(-x))};
+  \end{axis}
+  \end{tikzpicture}
 
-% \begin{slide}{Kernel Layer}
-% \begin{columns}
-%   \begin{column}{0.5\textwidth}
-%     \centering
-%     $\sigma(z) = \frac{1}{1 + e^{-z}}$
-%
-%     \vspace{0.5cm}
-%     \href{https://eigen.tuxfamily.org/dox/unsupported/TensorFunctors_8h_source.html}{\textbf{Forward Pass}}
-%   \end{column}
-%   \begin{column}{0.5\textwidth}
-%     $\sigma'(z) = \sigma(z)(1 - \sigma(z))$
-%
-%     \vspace{0.5cm}
-%     \hspace{0.4cm}\href{https://github.com/tensorflow/tensorflow/blob/2c8d0dca978a246f54c506aae4587dbce5d3bcf0/tensorflow/core/kernels/cwise_ops_gradients.h\#L51}{\textbf{Backward Pass}}
-%   \end{column}
-% \end{columns}
-% \end{slide}
+  \textbf{Sigmoid}
+\end{slide}
+
+\begin{slide}{Kernel Layer}
+\begin{columns}
+  \begin{column}{0.5\textwidth}
+    \centering
+    $\sigma(z) = \frac{1}{1 + e^{-z}}$
+
+    \vspace{0.5cm}
+    \href{https://eigen.tuxfamily.org/dox/unsupported/TensorFunctors_8h_source.html}{\textbf{Forward Pass}}
+  \end{column}
+  \begin{column}{0.5\textwidth}
+    $\sigma'(z) = \sigma(z)(1 - \sigma(z))$
+
+    \vspace{0.5cm}
+    \hspace{0.4cm}\href{https://github.com/tensorflow/tensorflow/blob/2c8d0dca978a246f54c506aae4587dbce5d3bcf0/tensorflow/core/kernels/cwise_ops_gradients.h\#L51}{\textbf{Backward Pass}}
+  \end{column}
+\end{columns}
+\end{slide}
 
 \begin{slide}{Quantization}
   \begin{tikzpicture}[thick]

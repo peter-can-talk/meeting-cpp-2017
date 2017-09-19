@@ -1,368 +1,368 @@
 % !TEX root = ../../presentation.tex
 
-% \begin{slide}{Graph Layer}
-% \begin{tikzpicture}[thick]
-%   \tikzset{box/.style={draw, rectangle, text width=3cm, text height=1cm}}
-%
-%   % Model
-%   \path (0, 0) coordinate (r)
-%         node {\includegraphics[scale=0.1]{cppcon-logo}};
-%
-%   \foreach \x/\l/\h in {0/Convolution/0,%
-%                      1/Convolution/0,%
-%                      2/Convolution/0,%
-%                      3/Convolution/3,%
-%                      4/Flatten/4,%
-%                      5/Dense/5%
-%                      } {
-%         \ifnum\h=0
-%           \draw ({1.75 + \x * 0.8}, -1.25) rectangle ++(0.6, 2.5)
-%                 node [midway, rotate=90] {\l};
-%         \else
-%           \draw ({1.75 + \x * 0.8}, -1.25) rectangle ++(0.6, 2.5)
-%                 node [midway, rotate=90] {\l};
-%           \onslide<2> {
-%             \draw [fill=red] ({1.75 + \x * 0.8}, -1.25) rectangle ++(0.6, 2.5)
-%                   node [midway, rotate=90] {\l};
-%           }
-%         \fi
-%
-%   }
-%   \path (8, 0) coordinate (P) node {$\mathbf{P(\text{real})}$};
-%
-%   % Edges;
-%   \draw [->, shorten <=0.75cm] (r) -- (1.75, 0);
-%   \draw [->, shorten >=0.75cm] (6.35, 0) -- (P);
-% \end{tikzpicture}
-% \end{slide}
-%
-% \begin{slide}{Graph Layer}
-% \begin{tikzpicture}[thick]
-%   \tikzset{op/.style={%
-%     draw, rectangle, text width=0.8cm, text height=0.4cm, rounded corners=1pt}}
-%   \tikzset{var/.style={draw, circle, inner sep=8pt}}
-%
-%   % Image, W, s
-%   \onslide<1->{
-%     \path (-1, -0.5)
-%           coordinate (i) node {\includegraphics[scale=0.06]{cppcon-logo}};
-%     \path (1.5, -1) coordinate [var] (Wc) node {\small$\mathbf{W_c}$};
-%     \path (3, 0) coordinate [var] (s) node {\small$\mathbf{s}$};
-%     \path (1.5, 1.5) coordinate [op] (conv2d) node {\tiny\textbf{Conv2D}};
-%
-%     % Edges
-%     \draw [-stealth, shorten <=0.4cm, bend left] (i) -- (conv2d);
-%     \draw [-stealth] (Wc) -- (conv2d);
-%     \draw [-stealth] (s) -- (conv2d);
-%   }
-%
-%   % Flatten
-%   \onslide<2->{
-%     \path (1.5, 3) coordinate [op] (flatten) node {\tiny\textbf{Flatten}};
-%
-%     % Edges
-%     \draw [-stealth] (conv2d) -- (flatten);
-%   }
-%
-%   % Matmul
-%   \onslide<3->{
-%     \path (4, 3) coordinate [op] (dense) node {\tiny\textbf{Matmul}};
-%     \path (4, 1.5) coordinate [var] (Wd) node {\small$\mathbf{W_d}$};
-%
-%     % Edges
-%     \draw [-stealth] (Wd) -- (dense);
-%     \draw [-stealth] (flatten) -- (dense);
-%   }
-%
-%   % Output
-%   \onslide<4->{
-%     \path (5.5, 3) coordinate [var] (P) node {\small$\mathbf{P}$};
-%
-%     % Edges
-%     \draw [-stealth] (dense) -- (P);
-%   }
-% \end{tikzpicture}
-% \end{slide}
-%
-% \begin{slide}{Graph Layer}
-% \begin{tikzpicture}[thick]
-%   \tikzset{op/.style={%
-%     draw, rectangle, text width=0.8cm, text height=0.4cm, rounded corners=1pt}}
-%   \tikzset{var/.style={draw, circle, inner sep=8pt}}
-%
-%   % Image, W, s
-%   \path (-1, -0.5)
-%         coordinate (i) node {\includegraphics[scale=0.06]{cppcon-logo}};
-%   \path (1.5, -1) coordinate [var] (Wc) node {\small$\mathbf{W_c}$};
-%   \path (3, 0) coordinate [var] (s) node {\small$\mathbf{s}$};
-%   \path (1.5, 1.5) coordinate [op] (conv2d) node {\tiny\textbf{Conv2D}};
-%
-%   % Edges
-%   \onslide<-2>{
-%     \draw [-stealth, shorten <=0.4cm, bend left] (i) -- (conv2d);
-%     \draw [-stealth] (Wc) -- (conv2d);
-%     \draw [-stealth] (s) -- (conv2d);
-%   }
-%   \onslide<3>{
-%     \draw [-stealth, shorten <=0.4cm, bend left] (i) -- (conv2d)
-%           node [pos=0.57, above, sloped]
-%           {\fontsize{6}{6}$n\times 16\times 8\times 8$};
-%     \draw [-stealth] (Wc) -- (conv2d)
-%           node [midway, above, sloped] {\tiny$5\times 5\times 8 \times 4$};
-%     \draw [-stealth] (s) -- (conv2d)
-%           node [pos=0.4, above, sloped] {\tiny$4$};
-%   }
-%
-%   % Flatten
-%   \path (1.5, 3) coordinate [op] (flatten) node {\tiny\textbf{Flatten}};
-%
-%   % Edges
-%   \onslide<-2>{
-%     \draw [-stealth] (conv2d) -- (flatten);
-%   }
-%   \onslide<3>{
-%     \draw [-stealth] (conv2d) -- (flatten)
-%           node [midway, left] {\tiny$n \times 8 \times 8 \times 4$};
-%   }
-%
-%   % Matmul
-%   \path (4, 3) coordinate [op] (dense) node {\tiny\textbf{Matmul}};
-%   \path (4, 1.5) coordinate [var] (Wd) node {\small$\mathbf{W_d}$};
-%
-%   % Edges
-%   \onslide<-2>{
-%     \draw [-stealth] (Wd) -- (dense);
-%     \draw [-stealth] (flatten) -- (dense);
-%   }
-%   \onslide<3>{
-%     \draw [-stealth] (Wd) -- (dense)
-%           node [midway, right] {\tiny$n \times 256$};
-%     \draw [-stealth] (flatten) -- (dense) node [midway, above] {\tiny$256$};
-%   }
-%
-%   % Output
-%   \path (5.5, 3) coordinate [var] (P) node {\small$\mathbf{P}$};
-%
-%   % Edges
-%   \onslide<-2>{
-%     \draw [-stealth] (dense) -- (P);
-%   }
-%   \onslide<3>{
-%     \draw [-stealth] (dense) -- (P) node [pos=0.45, above] {\tiny$n$};
-%   }
-%
-%   % List
-%   \draw (6.2, -0.3) node [text width=3cm] {
-%     \begin{enumerate}
-%       \item<1-> Operations
-%       \item<2-> Variables
-%       \item<3-> Tensors
-%     \end{enumerate}
-%   };
-% \end{tikzpicture}
-% \end{slide}
-%
-% \begin{slide}{Graph Layer}
-% \begin{tikzpicture}[thick]
-%   \tikzset{op/.style={%
-%     draw, rectangle, text width=0.8cm, text height=0.4cm, rounded corners=1pt}}
-%   \tikzset{var/.style={draw, circle, inner sep=8pt}}
-%
-%   % Image, W, s
-%   \path (-1, -0.5)
-%         coordinate (i) node {\includegraphics[scale=0.06]{cppcon-logo}};
-%   \onslide<1>{
-%     \path (1.5, -1) coordinate [var] (Wc) node {\small$\mathbf{W_c}$};
-%     \path (3, 0) coordinate [var] (s) node {\small$\mathbf{s}$};
-%     \path (1.5, 1.5) coordinate [op] (conv2d) node {\tiny\textbf{Conv2D}};
-%   }
-%   \onslide<2->{
-%     \path (1.5, -1) coordinate [fill=red, var] (Wc) node {\small$\mathbf{W_c}$};
-%     \path (3, 0) coordinate [fill=red, var] (s) node {\small$\mathbf{s}$};
-%     \path (1.5, 1.5) coordinate [fill=red, op]
-%           (conv2d) node {\tiny\textbf{Conv2D}};
-%   }
-%
-%
-%   % Edges
-%   \draw [-stealth, shorten <=0.4cm, bend left] (i) -- (conv2d);
-%   \draw [-stealth] (Wc) -- (conv2d);
-%   \draw [-stealth] (s) -- (conv2d);
-%
-%   % Flatten
-%   \onslide<-2>{
-%     \path (1.5, 3) coordinate [op] (flatten) node {\tiny\textbf{Flatten}};
-%   }
-%   \onslide<3->{
-%     \path (1.5, 3) coordinate [fill=NavyBlue, op] (flatten)
-%           node {\tiny\textbf{Flatten}};
-%   }
-%
-%   % Edges
-%   \draw [-stealth] (conv2d) -- (flatten);
-%
-%   % Matmul
-%   \onslide<-3>{
-%     \path (4, 3) coordinate [op] (dense) node {\tiny\textbf{Matmul}};
-%     \path (4, 1.5) coordinate [var] (Wd) node {\small$\mathbf{W_d}$};
-%   }
-%   \onslide<4->{
-%     \path (4, 3) coordinate [fill=LimeGreen, op] (dense)
-%           node {\tiny\textbf{Matmul}};
-%     \path (4, 1.5) coordinate [fill=LimeGreen, var] (Wd)
-%           node {\small$\mathbf{W_d}$};
-%   }
-%
-%   % Edges
-%   \draw [-stealth] (Wd) -- (dense);
-%   \draw [-stealth] (flatten) -- (dense);
-%
-%   % Output
-%   \onslide<-4>{
-%     \path (5.5, 3) coordinate [var] (P) node {\small$\mathbf{P}$};
-%   }
-%   \onslide<5->{
-%     \path (5.5, 3) coordinate [fill=Goldenrod, var] (P)
-%           node {\small$\mathbf{P}$};
-%   }
-%
-%   % Edges
-%   \draw [-stealth] (dense) -- (P);
-%
-%   % Machines
-%   % Server 0
-%   \draw [rounded corners=1pt] (-2.25, -3.5) rectangle ++(4.75, 1.5);
-%   \draw (0.25, -3.85) node {$\textbf{Server}_0$};
-%
-%   % Server 1
-%   \draw [rounded corners=1pt] (3.25, -3.5) rectangle ++(4.75, 1.5);
-%   \draw (5.5, -3.85) node {$\textbf{Server}_1$};
-%
-%   % CPU 0
-%   \onslide<-2>{
-%     \draw [rounded corners=1pt] (-2, -3.25) rectangle ++(2, 1)
-%           node [midway] {$\text{CPU}_0$};
-%   }
-%
-%   \onslide<3->{
-%     \draw [fill=NavyBlue, rounded corners=1pt] (-2, -3.25) rectangle ++(2, 1)
-%           node [midway] {$\text{CPU}_0$};
-%   }
-%
-%   % GPU 0
-%   \onslide<1>{
-%     \draw [rounded corners=1pt] (0.25, -3.25) rectangle ++(2, 1)
-%           node [midway] {$\text{GPU}_0$};
-%   }
-%   \onslide<2->{
-%     \draw [fill=red, rounded corners=1pt] (0.25, -3.25) rectangle ++(2, 1)
-%           node [midway] {$\text{GPU}_0$};
-%   }
-%
-%   % CPU 1
-%   \onslide<-4>{
-%     \draw [rounded corners=1pt] (3.5, -3.25) rectangle ++(2, 1)
-%           node [midway] {$\text{CPU}_1$};
-%   }
-%   \onslide<5->{
-%     \draw [fill=Goldenrod, rounded corners=1pt] (3.5, -3.25) rectangle ++(2, 1)
-%           node [midway] {$\text{CPU}_1$};
-%   }
-%
-%   % GPU 1
-%   \onslide<-3>{
-%     \draw [rounded corners=1pt] (5.75, -3.25) rectangle ++(2, 1)
-%           node [midway] {$\text{GPU}_1$};
-%   }
-%
-%   \onslide<4->{
-%     \draw [fill=LimeGreen, rounded corners=1pt] (5.75, -3.25) rectangle ++(2, 1)
-%           node [midway] {$\text{GPU}_1$};
-%   }
-% \end{tikzpicture}
-% \end{slide}
+\begin{slide}{Graph Layer}
+\begin{tikzpicture}[thick]
+  \tikzset{box/.style={draw, rectangle, text width=3cm, text height=1cm}}
+
+  % Model
+  \path (0, 0) coordinate (r)
+        node {\includegraphics[scale=0.1]{cppcon-logo}};
+
+  \foreach \x/\l/\h in {0/Convolution/0,%
+                     1/Convolution/0,%
+                     2/Convolution/0,%
+                     3/Convolution/3,%
+                     4/Flatten/4,%
+                     5/Dense/5%
+                     } {
+        \ifnum\h=0
+          \draw ({1.75 + \x * 0.8}, -1.25) rectangle ++(0.6, 2.5)
+                node [midway, rotate=90] {\l};
+        \else
+          \draw ({1.75 + \x * 0.8}, -1.25) rectangle ++(0.6, 2.5)
+                node [midway, rotate=90] {\l};
+          \onslide<2> {
+            \draw [fill=red] ({1.75 + \x * 0.8}, -1.25) rectangle ++(0.6, 2.5)
+                  node [midway, rotate=90] {\l};
+          }
+        \fi
+
+  }
+  \path (8, 0) coordinate (P) node {$\mathbf{P(\text{real})}$};
+
+  % Edges;
+  \draw [->, shorten <=0.75cm] (r) -- (1.75, 0);
+  \draw [->, shorten >=0.75cm] (6.35, 0) -- (P);
+\end{tikzpicture}
+\end{slide}
+
+\begin{slide}{Graph Layer}
+\begin{tikzpicture}[thick]
+  \tikzset{op/.style={%
+    draw, rectangle, text width=0.8cm, text height=0.4cm, rounded corners=1pt}}
+  \tikzset{var/.style={draw, circle, inner sep=8pt}}
+
+  % Image, W, s
+  \onslide<1->{
+    \path (-1, -0.5)
+          coordinate (i) node {\includegraphics[scale=0.06]{cppcon-logo}};
+    \path (1.5, -1) coordinate [var] (Wc) node {\small$\mathbf{W_c}$};
+    \path (3, 0) coordinate [var] (s) node {\small$\mathbf{s}$};
+    \path (1.5, 1.5) coordinate [op] (conv2d) node {\tiny\textbf{Conv2D}};
+
+    % Edges
+    \draw [-stealth, shorten <=0.4cm, bend left] (i) -- (conv2d);
+    \draw [-stealth] (Wc) -- (conv2d);
+    \draw [-stealth] (s) -- (conv2d);
+  }
+
+  % Flatten
+  \onslide<2->{
+    \path (1.5, 3) coordinate [op] (flatten) node {\tiny\textbf{Flatten}};
+
+    % Edges
+    \draw [-stealth] (conv2d) -- (flatten);
+  }
+
+  % Matmul
+  \onslide<3->{
+    \path (4, 3) coordinate [op] (dense) node {\tiny\textbf{Matmul}};
+    \path (4, 1.5) coordinate [var] (Wd) node {\small$\mathbf{W_d}$};
+
+    % Edges
+    \draw [-stealth] (Wd) -- (dense);
+    \draw [-stealth] (flatten) -- (dense);
+  }
+
+  % Output
+  \onslide<4->{
+    \path (5.5, 3) coordinate [var] (P) node {\small$\mathbf{P}$};
+
+    % Edges
+    \draw [-stealth] (dense) -- (P);
+  }
+\end{tikzpicture}
+\end{slide}
+
+\begin{slide}{Graph Layer}
+\begin{tikzpicture}[thick]
+  \tikzset{op/.style={%
+    draw, rectangle, text width=0.8cm, text height=0.4cm, rounded corners=1pt}}
+  \tikzset{var/.style={draw, circle, inner sep=8pt}}
+
+  % Image, W, s
+  \path (-1, -0.5)
+        coordinate (i) node {\includegraphics[scale=0.06]{cppcon-logo}};
+  \path (1.5, -1) coordinate [var] (Wc) node {\small$\mathbf{W_c}$};
+  \path (3, 0) coordinate [var] (s) node {\small$\mathbf{s}$};
+  \path (1.5, 1.5) coordinate [op] (conv2d) node {\tiny\textbf{Conv2D}};
+
+  % Edges
+  \onslide<-2>{
+    \draw [-stealth, shorten <=0.4cm, bend left] (i) -- (conv2d);
+    \draw [-stealth] (Wc) -- (conv2d);
+    \draw [-stealth] (s) -- (conv2d);
+  }
+  \onslide<3>{
+    \draw [-stealth, shorten <=0.4cm, bend left] (i) -- (conv2d)
+          node [pos=0.57, above, sloped]
+          {\fontsize{6}{6}$n\times 16\times 8\times 8$};
+    \draw [-stealth] (Wc) -- (conv2d)
+          node [midway, above, sloped] {\tiny$5\times 5\times 8 \times 4$};
+    \draw [-stealth] (s) -- (conv2d)
+          node [pos=0.4, above, sloped] {\tiny$4$};
+  }
+
+  % Flatten
+  \path (1.5, 3) coordinate [op] (flatten) node {\tiny\textbf{Flatten}};
+
+  % Edges
+  \onslide<-2>{
+    \draw [-stealth] (conv2d) -- (flatten);
+  }
+  \onslide<3>{
+    \draw [-stealth] (conv2d) -- (flatten)
+          node [midway, left] {\tiny$n \times 8 \times 8 \times 4$};
+  }
+
+  % Matmul
+  \path (4, 3) coordinate [op] (dense) node {\tiny\textbf{Matmul}};
+  \path (4, 1.5) coordinate [var] (Wd) node {\small$\mathbf{W_d}$};
+
+  % Edges
+  \onslide<-2>{
+    \draw [-stealth] (Wd) -- (dense);
+    \draw [-stealth] (flatten) -- (dense);
+  }
+  \onslide<3>{
+    \draw [-stealth] (Wd) -- (dense)
+          node [midway, right] {\tiny$n \times 256$};
+    \draw [-stealth] (flatten) -- (dense) node [midway, above] {\tiny$256$};
+  }
+
+  % Output
+  \path (5.5, 3) coordinate [var] (P) node {\small$\mathbf{P}$};
+
+  % Edges
+  \onslide<-2>{
+    \draw [-stealth] (dense) -- (P);
+  }
+  \onslide<3>{
+    \draw [-stealth] (dense) -- (P) node [pos=0.45, above] {\tiny$n$};
+  }
+
+  % List
+  \draw (6.2, -0.3) node [text width=3cm] {
+    \begin{enumerate}
+      \item<1-> Operations
+      \item<2-> Variables
+      \item<3-> Tensors
+    \end{enumerate}
+  };
+\end{tikzpicture}
+\end{slide}
+
+\begin{slide}{Graph Layer}
+\begin{tikzpicture}[thick]
+  \tikzset{op/.style={%
+    draw, rectangle, text width=0.8cm, text height=0.4cm, rounded corners=1pt}}
+  \tikzset{var/.style={draw, circle, inner sep=8pt}}
+
+  % Image, W, s
+  \path (-1, -0.5)
+        coordinate (i) node {\includegraphics[scale=0.06]{cppcon-logo}};
+  \onslide<1>{
+    \path (1.5, -1) coordinate [var] (Wc) node {\small$\mathbf{W_c}$};
+    \path (3, 0) coordinate [var] (s) node {\small$\mathbf{s}$};
+    \path (1.5, 1.5) coordinate [op] (conv2d) node {\tiny\textbf{Conv2D}};
+  }
+  \onslide<2->{
+    \path (1.5, -1) coordinate [fill=red, var] (Wc) node {\small$\mathbf{W_c}$};
+    \path (3, 0) coordinate [fill=red, var] (s) node {\small$\mathbf{s}$};
+    \path (1.5, 1.5) coordinate [fill=red, op]
+          (conv2d) node {\tiny\textbf{Conv2D}};
+  }
 
 
-% \begin{frame}[fragile]{Static Graphs}
-%   \begin{columns}
-%     \begin{column}{0.55\textwidth}
-%       \begin{itemize}
-%         \item Declarative programming model
-%         \item Static shapes and sizes
-%         \item Graphs defined once
-%         \item Can be compiled and optimized
-%       \end{itemize}
-%     \end{column}
-%     \begin{column}{0.45\textwidth}
-%       \begin{lstlisting}[language=pseudoML]
-%   Matrix<6, 9> a = ...;
-%   Matrix<6, 9> b = ...;
-%   Matrix<16, 6> c = ...;
-%   scalar s = 7;
-%
-%   d := s * a + b;
-%   e := matmul(c, d);
-%
-%   result := evaluate(e);
-%       \end{lstlisting}
-%     \end{column}
-%   \end{columns}
-% \end{frame}
-%
-% \begin{frame}[fragile]{Static Graphs}
-%   \begin{columns}
-%     \begin{column}{0.55\textwidth}
-%       \begin{itemize}
-%         \item Declarative programming model
-%         \item Static shapes and sizes
-%         \item Graphs defined once
-%         \item Can be compiled and optimized
-%       \end{itemize}
-%     \end{column}
-%     \begin{column}{0.45\textwidth}
-%       \begin{lstlisting}[language=pseudoML]
-% x = if_clause(condition,
-%                 then_value,
-%                 else_value);
-%
-% while_loop([a, b],
-%             condition_function,
-%             body_function);
-%       \end{lstlisting}
-%     \end{column}
-%   \end{columns}
-% \end{frame}
-%
-%
-% \begin{frame}[fragile]{Dynamic Graphs}
-%   \begin{columns}
-%     \begin{column}{0.55\textwidth}
-%       \begin{itemize}
-%         \item Imperative programming model
-%         \item Dynamic shapes and sizes
-%         \item Graphs defined by run
-%       \end{itemize}
-%     \end{column}
-%     \begin{column}{0.45\textwidth}
-%       \begin{lstlisting}[language=pseudoML]
-%   Matrix a = ...;
-%   Matrix b = ...;
-%   Matrix c = ...;
-%   scalar s = 7;
-%
-%   if s > 0  {
-%       d := s * a + b;
-%   } else {
-%       d := a - b;
-%   }
-%
-%   while s > 0  {
-%     x = input();
-%     c = matmul(c, x);
-%   }
-%
-%   result := c;
-%       \end{lstlisting}
-%     \end{column}
-%   \end{columns}
-% \end{frame}
+  % Edges
+  \draw [-stealth, shorten <=0.4cm, bend left] (i) -- (conv2d);
+  \draw [-stealth] (Wc) -- (conv2d);
+  \draw [-stealth] (s) -- (conv2d);
+
+  % Flatten
+  \onslide<-2>{
+    \path (1.5, 3) coordinate [op] (flatten) node {\tiny\textbf{Flatten}};
+  }
+  \onslide<3->{
+    \path (1.5, 3) coordinate [fill=NavyBlue, op] (flatten)
+          node {\tiny\textbf{Flatten}};
+  }
+
+  % Edges
+  \draw [-stealth] (conv2d) -- (flatten);
+
+  % Matmul
+  \onslide<-3>{
+    \path (4, 3) coordinate [op] (dense) node {\tiny\textbf{Matmul}};
+    \path (4, 1.5) coordinate [var] (Wd) node {\small$\mathbf{W_d}$};
+  }
+  \onslide<4->{
+    \path (4, 3) coordinate [fill=LimeGreen, op] (dense)
+          node {\tiny\textbf{Matmul}};
+    \path (4, 1.5) coordinate [fill=LimeGreen, var] (Wd)
+          node {\small$\mathbf{W_d}$};
+  }
+
+  % Edges
+  \draw [-stealth] (Wd) -- (dense);
+  \draw [-stealth] (flatten) -- (dense);
+
+  % Output
+  \onslide<-4>{
+    \path (5.5, 3) coordinate [var] (P) node {\small$\mathbf{P}$};
+  }
+  \onslide<5->{
+    \path (5.5, 3) coordinate [fill=Goldenrod, var] (P)
+          node {\small$\mathbf{P}$};
+  }
+
+  % Edges
+  \draw [-stealth] (dense) -- (P);
+
+  % Machines
+  % Server 0
+  \draw [rounded corners=1pt] (-2.25, -3.5) rectangle ++(4.75, 1.5);
+  \draw (0.25, -3.85) node {$\textbf{Server}_0$};
+
+  % Server 1
+  \draw [rounded corners=1pt] (3.25, -3.5) rectangle ++(4.75, 1.5);
+  \draw (5.5, -3.85) node {$\textbf{Server}_1$};
+
+  % CPU 0
+  \onslide<-2>{
+    \draw [rounded corners=1pt] (-2, -3.25) rectangle ++(2, 1)
+          node [midway] {$\text{CPU}_0$};
+  }
+
+  \onslide<3->{
+    \draw [fill=NavyBlue, rounded corners=1pt] (-2, -3.25) rectangle ++(2, 1)
+          node [midway] {$\text{CPU}_0$};
+  }
+
+  % GPU 0
+  \onslide<1>{
+    \draw [rounded corners=1pt] (0.25, -3.25) rectangle ++(2, 1)
+          node [midway] {$\text{GPU}_0$};
+  }
+  \onslide<2->{
+    \draw [fill=red, rounded corners=1pt] (0.25, -3.25) rectangle ++(2, 1)
+          node [midway] {$\text{GPU}_0$};
+  }
+
+  % CPU 1
+  \onslide<-4>{
+    \draw [rounded corners=1pt] (3.5, -3.25) rectangle ++(2, 1)
+          node [midway] {$\text{CPU}_1$};
+  }
+  \onslide<5->{
+    \draw [fill=Goldenrod, rounded corners=1pt] (3.5, -3.25) rectangle ++(2, 1)
+          node [midway] {$\text{CPU}_1$};
+  }
+
+  % GPU 1
+  \onslide<-3>{
+    \draw [rounded corners=1pt] (5.75, -3.25) rectangle ++(2, 1)
+          node [midway] {$\text{GPU}_1$};
+  }
+
+  \onslide<4->{
+    \draw [fill=LimeGreen, rounded corners=1pt] (5.75, -3.25) rectangle ++(2, 1)
+          node [midway] {$\text{GPU}_1$};
+  }
+\end{tikzpicture}
+\end{slide}
+
+
+\begin{frame}[fragile]{Static Graphs}
+  \begin{columns}
+    \begin{column}{0.55\textwidth}
+      \begin{itemize}
+        \item Declarative programming model
+        \item Static shapes and sizes
+        \item Graphs defined once
+        \item Can be compiled and optimized
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \begin{lstlisting}[language=pseudoML]
+  Matrix<6, 9> a = ...;
+  Matrix<6, 9> b = ...;
+  Matrix<16, 6> c = ...;
+  scalar s = 7;
+
+  d := s * a + b;
+  e := matmul(c, d);
+
+  result := evaluate(e);
+      \end{lstlisting}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Static Graphs}
+  \begin{columns}
+    \begin{column}{0.55\textwidth}
+      \begin{itemize}
+        \item Declarative programming model
+        \item Static shapes and sizes
+        \item Graphs defined once
+        \item Can be compiled and optimized
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \begin{lstlisting}[language=pseudoML]
+x = if_clause(condition,
+                then_value,
+                else_value);
+
+while_loop([a, b],
+            condition_function,
+            body_function);
+      \end{lstlisting}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]{Dynamic Graphs}
+  \begin{columns}
+    \begin{column}{0.55\textwidth}
+      \begin{itemize}
+        \item Imperative programming model
+        \item Dynamic shapes and sizes
+        \item Graphs defined by run
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \begin{lstlisting}[language=pseudoML]
+  Matrix a = ...;
+  Matrix b = ...;
+  Matrix c = ...;
+  scalar s = 7;
+
+  if s > 0  {
+      d := s * a + b;
+  } else {
+      d := a - b;
+  }
+
+  while s > 0  {
+    x = input();
+    c = matmul(c, x);
+  }
+
+  result := c;
+      \end{lstlisting}
+    \end{column}
+  \end{columns}
+\end{frame}
