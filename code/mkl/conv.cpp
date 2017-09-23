@@ -25,7 +25,8 @@ cv::Mat load_image(const char* image_path, bool is_gray) {
   return image;
 }
 
-std::vector<float> flip_channels(float* input_buffer, int X, int Y, int Z) {
+std::vector<float>
+flip_channels(float* input_buffer, size_t X, size_t Y, size_t Z) {
   assert(input_buffer != nullptr);
   std::vector<float> flipped(X * Y * Z);
 
@@ -204,12 +205,12 @@ int main(int argc, const char* argv[]) {
 
   float kernel_buffer[output_channels][input_channels][kernel_size]
                      [kernel_size];
-  for (int output_channel = 0; output_channel < output_channels;
+  for (size_t output_channel = 0; output_channel < output_channels;
        ++output_channel) {
-    for (int input_channel = 0; input_channel < input_channels;
+    for (size_t input_channel = 0; input_channel < input_channels;
          ++input_channel) {
-      for (int column = 0; column < kernel_size; ++column) {
-        for (int row = 0; row < kernel_size; ++row) {
+      for (size_t column = 0; column < kernel_size; ++column) {
+        for (size_t row = 0; row < kernel_size; ++row) {
           kernel_buffer[output_channel][input_channel][column][row] =
               kernel_template[column][row];
         }

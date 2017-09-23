@@ -1,4 +1,5 @@
 #include <mxnet-cpp/MxNetCpp.h>
+
 #include <cassert>
 #include <cstdlib>
 #include <iostream>
@@ -11,18 +12,6 @@ namespace mx = mxnet::cpp;
 mx::Symbol LeNet() {
   auto images = mx::Symbol::Variable("images");
   auto labels = mx::Symbol::Variable("labels");
-
-  // mx::Symbol fc1_weights("fc1_weights");
-  // mx::Symbol fc1_bias("fc1_bias");
-  //
-  // auto flatten = mx::Flatten("flatten", images);
-  // auto fc1 = mx::FullyConnected("fc1",
-  //                               flatten,
-  //                               fc1_weights,
-  //                               fc1_bias,
-  //                               /*units=*/10);
-  //
-  // return mx::SoftmaxOutput("softmax", fc1, labels);
 
   // ------------------------------- CONV 1 -------------------------------
 
@@ -136,11 +125,7 @@ int main(int argc, char const* argv[]) {
 
   mx::Optimizer* optimizer = mx::OptimizerRegistry::Find("sgd");
   assert(optimizer != nullptr);
-  optimizer->SetParam("lr", 0.1);
-      // ->SetParam("rescale_grad", 1.0 / batch_size)
-      // ->SetParam("wd", 0.01);
-  // std::unique_ptr<mx::LRScheduler> lr_sch(new mx::FactorScheduler(5000, 0.1));
-  // optimizer->SetLRScheduler(std::move(lr_sch));
+  optimizer->SetParam("lr", 0.1)->SetParam("rescale_grad", 1.0 / batch_size);
 
   std::unique_ptr<mx::Executor> executor(lenet.SimpleBind(context, symbols));
 
@@ -163,8 +148,7 @@ int main(int argc, char const* argv[]) {
           .CreateDataIter();
 
   size_t training_number_of_batches = 60000 / batch_size;
-  size_t test_number_of_batches = 10000 / batch_size;
-  for (size_t epoch = 0; epoch < number_of_epochs; ++epoch) {
+  for (size_t epoch = 1; epoch <= number_of_epochs; ++epoch) {
     training_iterator.Reset();
     for (size_t batch_index = 0; training_iterator.Next(); ++batch_index) {
       auto batch = training_iterator.GetDataBatch();
@@ -189,6 +173,9 @@ int main(int argc, char const* argv[]) {
                 << training_number_of_batches << std::flush;
     }
 
+    std::cout << std::endl;
+    LOG(INFO) << "Evaluating ...";
+
     mx::Accuracy accuracy;
     test_iterator.Reset();
     while (test_iterator.Next()) {
@@ -198,25 +185,9 @@ int main(int argc, char const* argv[]) {
       mx::NDArray::WaitAll();
       executor->Forward(/*training=*/false);
       accuracy.Update(batch.label, executor->outputs[0]);
-
-        std::vector<mx_float> x(batch_size * 10);
-        executor->outputs[0].SyncCopyToCPU(x.data(), x.size());
-
-        std::vector<mx_float> y(batch_size);
-        batch.label.SyncCopyToCPU(y.data(), y.size());
-
-        mx::NDArray::WaitAll();
-
-        for (size_t i = 0; i < batch_size; ++i) {
-          for (size_t j = 0; j < 10; ++j) {
-            std::cout << x[i * 10 + j] << " ";
-          }
-          std::cout << " | " << y[i] << "\n";
-        }
-        std::cout << std::flush;
     }
 
-    std::cout << "\nEpoch: " << epoch << " | Accuracy: " << accuracy.Get()
+    std::cout << "Epoch: " << epoch << " | Accuracy: " << accuracy.Get()
               << std::endl;
   }
 
