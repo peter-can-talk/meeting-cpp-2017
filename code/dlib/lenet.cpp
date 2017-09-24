@@ -38,7 +38,7 @@ int main(int argc, char const* argv[]) {
   trainer.set_learning_rate(0.01);
   trainer.set_min_learning_rate(1e-5);
   trainer.set_mini_batch_size(128);
-  trainer.set_max_num_epochs(1);
+  trainer.set_max_num_epochs(2);
   trainer.be_verbose();
 
   trainer.train(training_images, training_labels);

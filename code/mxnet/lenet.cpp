@@ -133,14 +133,14 @@ int predict(mx::NDArray image,
 
 int main(int argc, char const* argv[]) {
   if (argc < 2) {
-    std::cerr << "usage: lenet <mnist_path> [epochs=100]\n";
+    std::cerr << "usage: lenet <mnist_path> [epochs=2]\n";
     std::exit(EXIT_FAILURE);
   }
 
   std::string mnist_path(argv[1]);
 
   const size_t batch_size = 128;
-  const size_t number_of_epochs = (argc == 3) ? std::atoi(argv[2]) : 10;
+  const size_t number_of_epochs = (argc == 3) ? std::atoi(argv[2]) : 2;
   const size_t image_width = 28;
   const size_t image_height = 28;
   const size_t image_channels = 1;
