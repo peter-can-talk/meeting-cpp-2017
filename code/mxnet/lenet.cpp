@@ -1,4 +1,7 @@
+#include "socket.h"
+
 #include <mxnet-cpp/MxNetCpp.h>
+#include <opencv2/opencv.hpp>
 
 #include <cassert>
 #include <cstdlib>
@@ -87,16 +90,57 @@ mx::Symbol LeNet() {
   return mx::SoftmaxOutput("softmax", fc2, labels);
 }
 
+mx::NDArray load_image(const std::string& image_path,
+                       const mx::Shape& batch_shape,
+                       mx::Context& context) {
+  cv::Mat image2 = cv::imread(image_path, CV_LOAD_IMAGE_GRAYSCALE);
+  assert(image2.data != nullptr);
+  image2.convertTo(image2, CV_32F);
+  cv::normalize(image2, image2, 0, 1, cv::NORM_MINMAX);
+
+  cv::Mat image(batch_shape[2], batch_shape[3], batch_shape[1]);
+  resize(image2, image, image.size(), 0, 0);
+  std::cerr << "Loaded image of shape: " << image.rows << " x " << image.cols
+            << " x " << image.channels() << std::endl;
+
+  // Make a batch and fill the first image
+  const size_t batch_flat_size = batch_shape[0] * image.total();
+  std::vector<mx_float> flat(batch_flat_size, 0);
+  const auto* pointer = image.ptr<mx_float>(0);
+  std::copy(pointer, pointer + image.total(), flat.begin());
+
+  mx::NDArray ndarray(batch_shape, context);
+  ndarray.SyncCopyFromCPU(flat);
+  mx::NDArray::WaitAll();
+
+  return ndarray;
+}
+
+int predict(mx::NDArray image,
+            mx::Executor& executor,
+            std::map<std::string, mx::NDArray>& symbols) {
+  image.CopyTo(&symbols["images"]);
+  symbols["labels"] = 0;
+  mx::NDArray::WaitAll();
+  executor.Forward(/*training=*/false);
+
+  std::vector<mx_float> predictions(image.GetShape()[0]);
+  executor.outputs[0].ArgmaxChannel().SyncCopyToCPU(&predictions,
+                                                    predictions.size());
+
+  return predictions[0];
+}
+
 int main(int argc, char const* argv[]) {
   if (argc < 2) {
-    std::cerr << "usage: lenet <mnist_path>\n";
+    std::cerr << "usage: lenet <mnist_path> [epochs=100]\n";
     std::exit(EXIT_FAILURE);
   }
 
   std::string mnist_path(argv[1]);
 
   const size_t batch_size = 128;
-  const size_t number_of_epochs = 100;
+  const size_t number_of_epochs = (argc == 3) ? std::atoi(argv[2]) : 10;
   const size_t image_width = 28;
   const size_t image_height = 28;
   const size_t image_channels = 1;
@@ -189,6 +233,23 @@ int main(int argc, char const* argv[]) {
 
     std::cout << "Epoch: " << epoch << " | Accuracy: " << accuracy.Get()
               << std::endl;
+  }
+
+
+  Socket socket(6666);
+  std::cerr << "Listening on port 6666" << std::endl;
+
+  socket.accept();
+  std::cerr << "Connection established" << std::endl;
+
+  while (true) {
+    const std::string image_filename = socket.read(256);
+    std::cout << "Prediction request for: \"" << image_filename << "\""
+              << std::endl;
+    auto image = load_image(image_filename, image_shape, context);
+    const int prediction = predict(image, *executor, symbols);
+    socket.write(std::to_string(prediction));
+    std::cout << "Sending prediction: " << prediction << std::endl;
   }
 
   MXNotifyShutdown();

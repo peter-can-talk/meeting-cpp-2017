@@ -11,7 +11,7 @@ ApplicationWindow {
   visible: true
   title: "Canvas"
 
-  readonly property string imageFilename: "out.png"
+  readonly property string imageFilename: "canvas.png"
 
   Canvas {
     id: canvas
@@ -38,7 +38,6 @@ ApplicationWindow {
     onClear: {
       pressed = false;
       requestPaint();
-      canvas.save(root.imageFilename);
     }
 
     MouseArea {
@@ -59,7 +58,10 @@ ApplicationWindow {
     anchors.horizontalCenter: parent.horizontalCenter
     Button {
       flat: true
-      onClicked: backend.predict(root.imageFilename)
+      onClicked: {
+        canvas.save(root.imageFilename);
+        backend.predict(root.imageFilename);
+      }
       contentItem: Text {
         text: "Predict"
         color: "white"
@@ -67,12 +69,14 @@ ApplicationWindow {
         verticalAlignment: Text.AlignVCenter
       }
     }
+
     Label {
       id: predicted
-      text: "9"
+      text: "?"
       font.pixelSize: 72
       color: "white"
     }
+
     Button {
         flat: true
         onClicked: canvas.clear();
