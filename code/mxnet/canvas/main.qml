@@ -11,9 +11,7 @@ ApplicationWindow {
   visible: true
   title: "Canvas"
 
-  property string imageFilename: "out.png"
-
-  BackEnd { id: backend }
+  readonly property string imageFilename: "out.png"
 
   Canvas {
     id: canvas
@@ -61,10 +59,7 @@ ApplicationWindow {
     anchors.horizontalCenter: parent.horizontalCenter
     Button {
       flat: true
-      onClicked: {
-        var prediction = backend.predict(root.imageFilename);
-        predicted.text = prediction;
-      }
+      onClicked: backend.predict(root.imageFilename)
       contentItem: Text {
         text: "Predict"
         color: "white"
@@ -88,5 +83,10 @@ ApplicationWindow {
           verticalAlignment: Text.AlignVCenter
         }
     }
+  }
+
+  BackEnd {
+    id: backend
+    onPrediction: predicted.text = prediction
   }
 }

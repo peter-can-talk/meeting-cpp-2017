@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QString>
+#include <QTcpSocket>
 
 class BackEnd : public QObject {
   Q_OBJECT
@@ -10,7 +11,14 @@ class BackEnd : public QObject {
  public:
   explicit BackEnd(QObject* parent = nullptr);
 
-  Q_INVOKABLE int predict(QString imageFilename);
+  Q_INVOKABLE void predict(QString imageFilename);
+
+ signals:
+
+  void prediction(int prediction);
+
+ private:
+  QTcpSocket* socket;
 };
 
 #endif  // BACKEND_H

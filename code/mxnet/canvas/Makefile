@@ -624,6 +624,8 @@ moc_backend.cpp: /usr/local/Cellar/qt5/5.7.0/lib/QtCore.framework/Headers/QObjec
 		/usr/local/Cellar/qt5/5.7.0/lib/QtCore.framework/Headers/qobject.h \
 		/usr/local/Cellar/qt5/5.7.0/lib/QtCore.framework/Headers/QString \
 		/usr/local/Cellar/qt5/5.7.0/lib/QtCore.framework/Headers/qstring.h \
+		/usr/local/Cellar/qt5/5.7.0/lib/QtNetwork.framework/Headers/QTcpSocket \
+		/usr/local/Cellar/qt5/5.7.0/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		backend.h \
 		/usr/local/Cellar/qt5/5.7.0/bin/moc
 	/usr/local/Cellar/qt5/5.7.0/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/usr/local/Cellar/qt5/5.7.0/mkspecs/macx-clang -I/Users/goldsborough/Documents/Talks/cppcon-2017/code/mxnet/canvas -I/usr/local/Cellar/qt5/5.7.0/lib/QtWidgets.framework/Headers -I/usr/local/Cellar/qt5/5.7.0/lib/QtQuick.framework/Headers -I/usr/local/Cellar/qt5/5.7.0/lib/QtGui.framework/Headers -I/usr/local/Cellar/qt5/5.7.0/lib/QtQml.framework/Headers -I/usr/local/Cellar/qt5/5.7.0/lib/QtNetwork.framework/Headers -I/usr/local/Cellar/qt5/5.7.0/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/usr/local/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.1.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/usr/include -I'/System/Library/Frameworks (framework directory)' -I'/Library/Frameworks (framework directory)' -F/usr/local/Cellar/qt5/5.7.0/lib backend.h -o moc_backend.cpp
@@ -652,7 +654,9 @@ main.o: main.cpp /usr/local/Cellar/qt5/5.7.0/lib/QtWidgets.framework/Headers/QAp
 		/usr/local/Cellar/qt5/5.7.0/lib/QtCore.framework/Headers/QObject \
 		/usr/local/Cellar/qt5/5.7.0/lib/QtCore.framework/Headers/qobject.h \
 		/usr/local/Cellar/qt5/5.7.0/lib/QtCore.framework/Headers/QString \
-		/usr/local/Cellar/qt5/5.7.0/lib/QtCore.framework/Headers/qstring.h
+		/usr/local/Cellar/qt5/5.7.0/lib/QtCore.framework/Headers/qstring.h \
+		/usr/local/Cellar/qt5/5.7.0/lib/QtNetwork.framework/Headers/QTcpSocket \
+		/usr/local/Cellar/qt5/5.7.0/lib/QtNetwork.framework/Headers/qtcpsocket.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 backend.o: backend.cpp backend.h \
@@ -660,6 +664,10 @@ backend.o: backend.cpp backend.h \
 		/usr/local/Cellar/qt5/5.7.0/lib/QtCore.framework/Headers/qobject.h \
 		/usr/local/Cellar/qt5/5.7.0/lib/QtCore.framework/Headers/QString \
 		/usr/local/Cellar/qt5/5.7.0/lib/QtCore.framework/Headers/qstring.h \
+		/usr/local/Cellar/qt5/5.7.0/lib/QtNetwork.framework/Headers/QTcpSocket \
+		/usr/local/Cellar/qt5/5.7.0/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		/usr/local/Cellar/qt5/5.7.0/lib/QtCore.framework/Headers/QDataStream \
+		/usr/local/Cellar/qt5/5.7.0/lib/QtCore.framework/Headers/qdatastream.h \
 		/usr/local/Cellar/qt5/5.7.0/lib/QtCore.framework/Headers/QDebug \
 		/usr/local/Cellar/qt5/5.7.0/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o backend.o backend.cpp
