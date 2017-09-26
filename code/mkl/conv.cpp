@@ -278,7 +278,7 @@ int main(int argc, const char* argv[]) {
 
   auto flipped_output =
       flip_channels(output_buffer, output_channels, height, width);
-  save_image("mkl-out.bmp", flipped_output.data(), height, width, is_gray);
+  save_image("mkl-out.png", flipped_output.data(), height, width, is_gray);
 
   // ---------------------------------------------------------------------------
 

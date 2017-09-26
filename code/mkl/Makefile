@@ -1,7 +1,8 @@
 TARGET := conv
 WARNINGS := -Wall -Wextra -pedantic -Wno-vla-extension
 HEADERS := -isystem /opt/intel/mkl/include
-LIBS := -L /opt/intel/mkl/lib/ -L/usr/local/lib
+MKL_PATH := /opt/intel/mkl
+LIBS := -L $(MKL_PATH)/lib/ -L /usr/local/lib
 CXXFLAGS := -std=c++11 -O2
 
 all: conv
@@ -15,4 +16,4 @@ conv: $(TARGET).cpp
 .phony: clean
 
 clean:
-	rm $(TARGET) || echo -n ""
+	rm $(TARGET) mkl-out.png || echo -n ""
