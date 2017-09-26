@@ -1,4 +1,4 @@
-#include "socket.h"
+#include "common/socket.h"
 
 #include <mxnet-cpp/MxNetCpp.h>
 #include <opencv2/opencv.hpp>

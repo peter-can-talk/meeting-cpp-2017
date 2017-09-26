@@ -1,4 +1,4 @@
-#include "socket.h"
+#include "common/socket.h"
 
 #include <tensorflow/cc/ops/const_op.h>
 #include <tensorflow/cc/ops/image_ops.h>

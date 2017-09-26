@@ -4,7 +4,8 @@ HEADERS := -isystem $(TF_PATH) \
 					 -isystem $(TF_PATH)/bazel-genfiles \
 					 -isystem $(TF_PATH)/third-party \
 					 -isystem /usr/local/include/eigen3 \
-					 -isystem $(PB_PATH)/src
+					 -isystem $(PB_PATH)/src \
+					 -I ../
 LIBS := -L$(TF_PATH)/bazel-bin/tensorflow/
 CXXFLAGS := -std=c++11 -O2
 
@@ -17,8 +18,8 @@ graph: $(TARGET).cpp
 
 server: $(TARGET)-server.cpp
 	$(CXX) $(WARNINGS) $(CXXFLAGS) $(HEADERS) $(LIBS) \
-	$(TARGET)-server.cpp socket.cpp -o $(TARGET)-server -l tensorflow_cc \
-	-lopencv_imgcodecs -lopencv_imgproc -lopencv_core
+	$(TARGET)-server.cpp ../common/socket.cpp -o $(TARGET)-server \
+	-l tensorflow_cc -lopencv_imgcodecs -lopencv_imgproc -lopencv_core
 
 .phony: clean
 
