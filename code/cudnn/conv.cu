@@ -210,7 +210,7 @@ int main(int argc, const char* argv[]) {
   float* h_output = new float[image_bytes];
   cudaMemcpy(h_output, d_output, image_bytes, cudaMemcpyDeviceToHost);
 
-  save_image("out.png", h_output, height, width);
+  save_image("cudnn-out.png", h_output, height, width);
 
   delete[] h_output;
   cudaFree(d_kernel);

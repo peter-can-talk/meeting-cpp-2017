@@ -6,8 +6,8 @@ Example of doing an edge-detection convolution using Intel MKL.
 
 Prerequisites:
 
-1. Install Intel MKL for your system: https://software.intel.com/en-us/mkl
-2. OpenCV2 (consult your package manager).)
+1. Install Intel MKL for your system: https://software.intel.com/en-us/mkl,
+2. OpenCV2 (consult your package manager).
 
 Then just `make`. If your MKL did not end up under `/opt/intel/mkl`, change the
 Makefile or set the `MKL_PATH` environment variable before the `make`

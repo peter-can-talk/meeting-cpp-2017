@@ -1,7 +1,8 @@
 CXX := nvcc
 TARGET := conv
-HEADERS := -I cudnn/include
-LIBS := -L cudnn/lib64 -L/usr/local/lib
+CUDNN_PATH := cudnn
+HEADERS := -I $(CUDNN_PATH)/include
+LIBS := -L $(CUDNN_PATH)/lib64 -L/usr/local/lib
 CXXFLAGS := -arch=sm_35 -std=c++11 -O2
 
 all: conv
