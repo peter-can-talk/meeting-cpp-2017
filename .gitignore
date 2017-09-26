@@ -349,3 +349,4 @@ ENV/
 ## Other
 *.pb
 *.app
+code/*.png
