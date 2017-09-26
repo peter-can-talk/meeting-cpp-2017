@@ -34,13 +34,14 @@ $ make
 
 ## Running
 
-First run the binary produced from `lenet.cpp`, which will train the neural
-network. You can optionally pass a number of epochs to train as a command line
-argument. Anywhere between 1 and 10 is sensible. The default is two epochs,
-which gets you to around 98% accuracy for the task (handwritten digit
-classification). Once it's done training, it will start listening on a socket
-for prediction requests. At this point, launch the demo app binary, which will
-connect to the server, allowing you to request predictions. Like so:
+First download the MNIST dataset using the `download_mnist.sh` script. Then run
+the binary produced from `lenet.cpp`, which will train the neural network. You
+can optionally pass a number of epochs to train as a command line argument.
+Anywhere between 1 and 10 is sensible. The default is two epochs, which gets you
+to around 98% accuracy for the task (handwritten digit classification). Once
+it's done training, it will start listening on a socket for prediction requests.
+At this point, launch the demo app binary, which will connect to the server,
+allowing you to request predictions. Like so:
 
 ```sh
 $ LD_LIBRARY_PATH=/path/to/mxnet/lib ./lenet MNIST_data
