@@ -282,6 +282,91 @@
 \end{tikzpicture}
 \end{slide}
 
+\begin{slide}{Graph Layer Parallelism}
+  \begin{tikzpicture}[thick]
+    \tikzset{box/.style={%
+      draw, rectangle, rounded corners=1pt, text width=3cm, text height=2cm}}
+
+    % Machine A
+    \path (-2, -0.2) coordinate [box] (a);
+    \draw (a)+(0, -1.5) node {Machine A};
+
+    % Machine B
+    \path (+2, -0.2) coordinate [box] (b);
+    \draw (b)+(0, -1.5) node {Machine B};
+
+    % Parameter Server
+    \path (0, +3) coordinate [box, text height=1cm, text width=3.5cm]
+          (ps) node {Parameter Server};
+
+    % Neural Networks
+    \foreach \m in {0, 1} {
+      \foreach \l in {0, 1, 2} {
+        \foreach \n in {0, ..., 3} {
+          \path ({(\m * -4) + 0.85 + \n * 0.75}, {-0.95 + \l * 0.75})
+                coordinate [draw, semithick, circle, inner sep=2pt] (\m\l\n);
+        }
+      }
+      \foreach \l/\k in {0/1, 1/2} {
+        \foreach \i in {0, ..., 3} {
+          \foreach \j in {0, ..., 3} {
+            \draw [thin, ->] (\m\l\i) -- (\m\k\j);
+          }
+        }
+      }
+    }
+
+    % Edges
+    \draw [<->, dotted] (a) -- (ps)
+          node [pos=0.5, sloped, fill=white] {\scriptsize Sync};
+    \draw [<->, dotted] (b) -- (ps)
+          node [pos=0.5, sloped, fill=white] {\scriptsize Sync};
+
+    % Label
+    \draw (0, -2.6) node {\large\textbf{Data Parallelism}};
+  \end{tikzpicture}
+\end{slide}
+
+\begin{slide}{Graph Layer Parallelism}
+  \begin{tikzpicture}[thick]
+    \tikzset{box/.style={%
+      draw, rectangle, rounded corners=1pt, text width=3cm, text height=2cm}}
+
+    % Machine A
+    \path (-2.5, 0) coordinate [box] (a);
+    \draw (a)+(0, -1.5) node {Machine A};
+
+    % Machine B
+    \path (+2.5, 0) coordinate [box] (b);
+    \draw (b)+(0, -1.5) node {Machine B};
+
+    % Neural Networks
+    \foreach \m in {0, 1} {
+      \foreach \l in {0, 1, 2} {
+        \foreach \n in {0, 1} {
+          \path ({(\m * -5) + 2 + \n}, {-0.75 + \l * 0.75})
+                coordinate [draw, semithick, circle, inner sep=2pt] (\m\l\n);
+        }
+      }
+      \foreach \l/\k in {0/1, 1/2} {
+        \foreach \i in {0, ..., 1} {
+          \foreach \j in {0, ..., 1} {
+            \draw [thin, ->] (\m\l\i) -- (\m\k\j);
+          }
+        }
+      }
+    }
+
+    \foreach \l in {0, 1, 2} {
+      \draw [<->, dotted] (1\l1) -- (0\l0)
+            node [midway, fill=white] {\scriptsize Sync};
+    }
+
+    % Label
+    \draw (0, -2.5) node {\large\textbf{Model Parallelism}};
+  \end{tikzpicture}
+\end{slide}
+
 
 \begin{frame}[fragile]{Static Graphs}
   \begin{columns}

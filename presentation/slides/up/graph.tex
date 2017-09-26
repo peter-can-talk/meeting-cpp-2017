@@ -1,0 +1,81 @@
+% !TEX root = ../../presentation.tex
+
+\begin{slide}{Graph Layer: TensorFlow}
+  \pause
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item Google (2015)
+        \item Static Graphs
+        \item GPUs \cmark
+        \item Distributed \cmark
+        \item C++ API \xmark
+        \item Very ``Deployable''
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \includegraphics[scale=0.2]{tensorflow}
+    \end{column}
+  \end{columns}
+\end{slide}
+
+\begin{slide}{Graph Layer: PyTorch/Caffe2}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \hspace{-1.2cm}\includegraphics[scale=0.4]{pytorch}
+      \vspace{0.2cm}
+
+      \begin{itemize}
+        \item Facebook (2016)
+        \item Dynamic Graphs
+        \item For Research
+        \item GPUs \cmark
+        \item Distributed \cmark
+        \item Pure Python
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \hspace{-1.2cm}\includegraphics[scale=0.9]{caffe2}
+      \vspace{0.2cm}
+
+      \begin{itemize}
+        \item Facebook (2017)
+        \item Static Graphs
+        \item For Deployment
+        \item GPUs \cmark
+        \item Distributed \cmark
+        \item C++ API \cmark
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{slide}
+
+\begin{slide}{Graph Layer: MXNet}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item Community, then Amazon
+        \item Apache Incubator
+        \item Highly Modular
+        \item GPUs \cmark
+        \item Distributed \cmark
+        \item APIs for many languages (C++ \cmark)
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \includegraphics[scale=0.2]{mxnet}
+    \end{column}
+  \end{columns}
+\end{slide}
+
+\begin{slide}{Graph Layer: Others}
+  \includegraphics[scale=0.5, trim={0 0.5cm 0 0}, clip]{cntk}
+  \hspace{1cm}
+  \includegraphics[scale=0.55, trim={0 -0.5cm 0 0}, clip]{theano}
+
+
+  \vspace{1.5cm}
+  \includegraphics[scale=0.25]{torch}
+\end{slide}
