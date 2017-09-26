@@ -348,3 +348,4 @@ ENV/
 
 ## Other
 *.pb
+*.app

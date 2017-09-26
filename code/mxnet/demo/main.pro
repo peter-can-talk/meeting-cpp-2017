@@ -1,4 +1,4 @@
-TARGET = canvas
+TARGET = demo
 TEMPLATE = app
 QT += widgets qml quick core network
 RESOURCES += qml.qrc

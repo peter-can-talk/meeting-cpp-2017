@@ -2,7 +2,7 @@ import QtQuick 2.6
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 import QtQuick.Controls.Styles 1.4
-import canvas.backend 1.0
+import demo.backend 1.0
 
 ApplicationWindow {
   id: root
@@ -11,10 +11,10 @@ ApplicationWindow {
   visible: true
   title: "Canvas"
 
-  readonly property string imageFilename: "canvas.png"
+  readonly property string imageFilename: "demo.png"
 
   Canvas {
-    id: canvas
+    id: demo
     anchors.fill: parent
     property int posX;
     property int posY;
@@ -59,7 +59,7 @@ ApplicationWindow {
     Button {
       flat: true
       onClicked: {
-        canvas.save(root.imageFilename);
+        demo.save(root.imageFilename);
         backend.predict(root.imageFilename);
       }
       contentItem: Text {
@@ -79,7 +79,7 @@ ApplicationWindow {
 
     Button {
         flat: true
-        onClicked: canvas.clear();
+        onClicked: demo.clear();
         contentItem: Text {
           text: "Reset"
           color: "white"
