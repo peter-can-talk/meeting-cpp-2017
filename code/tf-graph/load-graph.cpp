@@ -120,7 +120,7 @@ int main(int argc, char* argv[]) {
   assert(!outputs.empty());
   auto image = outputs.front().flat<float>();
   image = (image + 1.0f) / 2.0f;
-  save_image("/tmp/gan-out.png", image.data());
+  save_image("out.png", image.data());
 
   TF_CHECK_OK(session->Close());
 }
