@@ -18,23 +18,23 @@
   \begin{tikzpicture}
     \pause
     \node [inner sep=0] (titan) at (-3, 0)
-          {\includegraphics[width=4.5cm, height=2.7cm]{titan-x}};
+          {\includegraphics[scale=0.12]{titan-x}};
     \draw [white, rounded corners=5pt, line width=5pt]
         (titan.north west) --
         (titan.north east) --
         (titan.south east) --
         (titan.south west) -- cycle;
-    \draw (titan)+(0, -1.6) node {\textbf{Titan X}};
+    \draw (titan)+(0, -2.9) node {\textbf{Titan X}};
 
-    \pause
-    \node [inner sep=0] (tx2) at (+3, 0)
-          {\includegraphics[width=4.5cm, height=2.7cm]{jetson-tx2}};
-    \draw [white, rounded corners=5pt, line width=5pt]
-        (tx2.north west) --
-        (tx2.north east) --
-        (tx2.south east) --
-        (tx2.south west) -- cycle;
-    \draw (tx2)+(0, -1.6) node {\textbf{Jetson TX2}};
+    % \pause
+    % \node [inner sep=0] (tx2) at (+3, 0)
+    %       {\includegraphics[width=4.5cm, height=2.7cm]{jetson-tx2}};
+    % \draw [white, rounded corners=5pt, line width=5pt]
+    %     (tx2.north west) --
+    %     (tx2.north east) --
+    %     (tx2.south east) --
+    %     (tx2.south west) -- cycle;
+    % \draw (tx2)+(0, -1.6) node {\textbf{Jetson TX2}};
 
     % \pause
     % \node [inner sep=0] (dgx1) at (0, -3.9)

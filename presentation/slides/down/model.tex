@@ -4,29 +4,29 @@
 \vspace{0.5cm}
 \pause
 
-\begin{tikzpicture}[thick]
-  \tikzset{box/.style={draw, rectangle, text width=1.75cm, text height=0.75cm}}
+% \begin{tikzpicture}[thick]
+%   \tikzset{box/.style={draw, rectangle, text width=1.75cm, text height=0.75cm}}
+%
+%   % Model
+%   \path (0, 0) coordinate (i) node {\includegraphics[scale=0.1]{cppcon-logo}};
+%   \path (2.5, 0) coordinate [box] (E) node {Encoder};
+%   \path (4.5, 0) coordinate (z) node {$\mathbf{z}$};
+%   \path (6.5, 0) coordinate [box] (D) node {Decoder};
+%   \path (9, 0) coordinate (r)
+%         node {\includegraphics[scale=0.1]{cppcon-logo-blurry}};
+%
+%   % Edges
+%   \draw [->, shorten <=0.75cm] (i) -- (E);
+%   \draw [->, shorten >=0.25cm] (E) -- (z);
+%   \draw [->, shorten <=0.25cm] (z) -- (D);
+%   \draw [->, shorten >=0.75cm] (D) -- (r);
+%
+%   % Label
+%   \draw (4.5, -1.2) node {\textbf{Autoencoder}};
+% \end{tikzpicture}
+% \pause
 
-  % Model
-  \path (0, 0) coordinate (i) node {\includegraphics[scale=0.1]{cppcon-logo}};
-  \path (2.5, 0) coordinate [box] (E) node {Encoder};
-  \path (4.5, 0) coordinate (z) node {$\mathbf{z}$};
-  \path (6.5, 0) coordinate [box] (D) node {Decoder};
-  \path (9, 0) coordinate (r)
-        node {\includegraphics[scale=0.1]{cppcon-logo-blurry}};
-
-  % Edges
-  \draw [->, shorten <=0.75cm] (i) -- (E);
-  \draw [->, shorten >=0.25cm] (E) -- (z);
-  \draw [->, shorten <=0.25cm] (z) -- (D);
-  \draw [->, shorten >=0.75cm] (D) -- (r);
-
-  % Label
-  \draw (4.5, -1.2) node {\textbf{Autoencoder}};
-\end{tikzpicture}
-\pause
-
-\vspace{0.5cm}
+% \vspace{0.5cm}
 
 \begin{tikzpicture}[thick]
   \tikzset{box/.style={draw, rectangle, text width=1.75cm, text height=0.75cm}}
@@ -51,7 +51,7 @@
   \draw [->, shorten >=0.75cm] (D) -- (P);
 
   % Label
-  \draw (5.5, -2.2) node {\textbf{Generative Adversarial Networks (GAN)}};
+  \draw (5.5, -2.4) node {\textbf{Generative Adversarial Networks (GAN)}};
 \end{tikzpicture}
 \end{slide}
 
