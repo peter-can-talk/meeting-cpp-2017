@@ -12,40 +12,67 @@
 %   Deep Learning Trend
 % \end{slide}
 
+% \begin{slide}{Hardware: GPU}
+%   \vspace{0.2cm}
+%
+%   \begin{tikzpicture}
+%     \pause
+%     % \node [inner sep=0] (titan) at (-3, 0)
+%     %       {\includegraphics[scale=0.12]{titan-x}};
+%     % \draw [white, rounded corners=5pt, line width=5pt]
+%     %     (titan.north west) --
+%     %     (titan.north east) --
+%     %     (titan.south east) --
+%     %     (titan.south west) -- cycle;
+%     % \draw (titan)+(0, -2.9) node {\textbf{Titan X}};
+%
+%     % \pause
+%     % \node [inner sep=0] (tx2) at (+3, 0)
+%     %       {\includegraphics[width=4.5cm, height=2.7cm]{jetson-tx2}};
+%     % \draw [white, rounded corners=5pt, line width=5pt]
+%     %     (tx2.north west) --
+%     %     (tx2.north east) --
+%     %     (tx2.south east) --
+%     %     (tx2.south west) -- cycle;
+%     % \draw (tx2)+(0, -1.6) node {\textbf{Jetson TX2}};
+%
+%     % \pause
+%     % \node [inner sep=0] (dgx1) at (0, -3.9)
+%     %       {\includegraphics[width=4.5cm, height=3cm]{dgx-1}};
+%     % \draw [white, rounded corners=5pt, line width=5pt]
+%     %     (dgx1.north west) --
+%     %     (dgx1.north east) --
+%     %     (dgx1.south east) --
+%     %     (dgx1.south west) -- cycle;
+%     % \draw (dgx1)+(0, -1.8) node {\textbf{DGX-1}};
+%   \end{tikzpicture}
+% \end{slide}
+
 \begin{slide}{Hardware: GPU}
-  \vspace{0.2cm}
-
-  \begin{tikzpicture}
-    \pause
-    \node [inner sep=0] (titan) at (-3, 0)
-          {\includegraphics[scale=0.12]{titan-x}};
-    \draw [white, rounded corners=5pt, line width=5pt]
-        (titan.north west) --
-        (titan.north east) --
-        (titan.south east) --
-        (titan.south west) -- cycle;
-    \draw (titan)+(0, -2.9) node {\textbf{Titan X}};
-
-    % \pause
-    % \node [inner sep=0] (tx2) at (+3, 0)
-    %       {\includegraphics[width=4.5cm, height=2.7cm]{jetson-tx2}};
-    % \draw [white, rounded corners=5pt, line width=5pt]
-    %     (tx2.north west) --
-    %     (tx2.north east) --
-    %     (tx2.south east) --
-    %     (tx2.south west) -- cycle;
-    % \draw (tx2)+(0, -1.6) node {\textbf{Jetson TX2}};
-
-    % \pause
-    % \node [inner sep=0] (dgx1) at (0, -3.9)
-    %       {\includegraphics[width=4.5cm, height=3cm]{dgx-1}};
-    % \draw [white, rounded corners=5pt, line width=5pt]
-    %     (dgx1.north west) --
-    %     (dgx1.north east) --
-    %     (dgx1.south east) --
-    %     (dgx1.south west) -- cycle;
-    % \draw (dgx1)+(0, -1.8) node {\textbf{DGX-1}};
-  \end{tikzpicture}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+    \centering
+      \begin{tikzpicture}
+        \node [inner sep=0] (titan) at (-3, 0)
+              {\includegraphics[scale=0.08]{titan-x}};
+        \draw [white, rounded corners=5pt, line width=5pt]
+            (titan.north west) --
+            (titan.north east) --
+            (titan.south east) --
+            (titan.south west) -- cycle;
+        \draw (titan)+(0, -2.2) node {\textbf{Titan X}};
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+    \centering
+      \begin{itemize}
+        \item 3840 cores
+        \item 12GB on-chip memory
+        \item 547.7GB/s bandwidth
+        \item 12 TFLOPS
+      \end{itemize}
+    \end{column}
+  \end{columns}
 \end{slide}
 
 % \begin{slide}{Hardware: Intel + Nervana}
@@ -87,7 +114,7 @@
         \item 8 NVIDIA Tesla P100 GPUs
         \item NVLink (12x faster than PCIe)
         \item 16 GB RAM
-        \item 10.6 TFLOPS
+        \item 10.6 TFLOPS/GPU
         \item Reduced Precision Computing
       \end{itemize}
     \end{column}
