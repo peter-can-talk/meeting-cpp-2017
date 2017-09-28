@@ -49,7 +49,6 @@
   % Model
   \path (0, 0) coordinate (r)
         node {\includegraphics[scale=0.1]{cppcon-logo}};
-  \draw (r)+(0, -1.1) node {\footnotesize\texttt{128 $\times$ 128 x $\times$}};
 
   \foreach \x/\l in {0/Convolution,%
                      1/Convolution,%
@@ -390,7 +389,7 @@
       }
     }
 
-      \draw (1.5, -0.5) node {\textbf{Patterns}};
+    \onslide<2->{\draw (1.5, -0.5) node {\textbf{Patterns}};}
   \end{tikzpicture}
   \hspace{2cm}
   \begin{tikzpicture}[thick]
@@ -413,7 +412,7 @@
       }
     }
 
-    \draw (1.5, -0.5) node {\textbf{Edges}};
+    \onslide<3->{\draw (1.5, -0.5) node {\textbf{Edges}};}
   \end{tikzpicture}
 \end{slide}
 
@@ -489,7 +488,7 @@
   % Model
   \path (0, 0) coordinate (r)
         node {\includegraphics[scale=0.1]{cppcon-logo}};
-  \draw (r)+(0, -1.1) node {\footnotesize\texttt{128 $\times$ 128 $\times$ 3}};
+  \draw (r)+(0, -1.1) node {\footnotesize\texttt{128 $\times$\hspace{-1mm} 128 \hspace{-1mm}$\times$\hspace{-1mm} 3}};
 
   \foreach \x/\l/\s\b in {0/Convolution/64$\times$64$\times$32/0,%
                      1/Convolution/32$\times$32$\times$16/1,%

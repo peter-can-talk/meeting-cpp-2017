@@ -23,7 +23,7 @@ struct CPUKernel {
 namespace tensorflow {
 
 REGISTER_OP("CppConSigmoid")
-    .Attr("T: {float, double, int32}")
+    .Attr("T: {float, double}")
     .Input("tensor: T")
     .Output("output: T")
     .SetShapeFn([](shape_inference::InferenceContext* context) {
@@ -61,12 +61,10 @@ class CppConSigmoid : public OpKernel {
                               .TypeConstraint<T>("T"), \
                           CppConSigmoid<GPUKernel, T>);
 
-CPU_KERNEL(int32)
 CPU_KERNEL(float)
 CPU_KERNEL(double)
 
 #if GOOGLE_CUDA
-GPU_KERNEL(int32)
 GPU_KERNEL(float)
 GPU_KERNEL(double)
 #endif  // GOOGLE_CUDA

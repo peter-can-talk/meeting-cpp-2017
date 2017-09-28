@@ -34,4 +34,3 @@ void GPUKernel<T>::operator()(tensorflow::OpKernelContext* context,
 
 template struct GPUKernel<float>;
 template struct GPUKernel<double>;
-template struct GPUKernel<tensorflow::int32>;

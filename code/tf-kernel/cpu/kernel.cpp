@@ -5,7 +5,7 @@
 namespace tensorflow {
 
 REGISTER_OP("CppConSigmoid")
-    .Attr("T: {float, double, int32}")
+    .Attr("T: {float, double}")
     .Input("tensor: T")
     .Output("output: T")
     .SetShapeFn([](shape_inference::InferenceContext* context) {
@@ -40,7 +40,6 @@ class CppConSigmoid : public OpKernel {
                               .TypeConstraint<T>("T"), \
                           CppConSigmoid<T>);
 
-CPU_KERNEL(int32)
 CPU_KERNEL(float)
 CPU_KERNEL(double)
 }  // namespace tensorflow

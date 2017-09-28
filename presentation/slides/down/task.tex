@@ -1,6 +1,7 @@
 % !TEX root = ../../presentation.tex
 
 \begin{slide}{Task Layer}
+\pause
 \vspace{0.4cm}
 \begin{tikzpicture}[thick]
   \path (0, 0) coordinate (x)
@@ -8,20 +9,22 @@
   \draw (0, -1) node {\textbf{Classification}\textsuperscript{$\star$}};
 \end{tikzpicture}
 \hspace{2cm}
+\pause
 \begin{tikzpicture}
-  \path (-1, 0.2) coordinate (x) node {$f($\small\begin{CJK*}{UTF8}{gbsn}文内容\end{CJK*}$) = $};
-  \path (0.15, 0.2) coordinate [draw, gray, circle, inner sep=0.9pt] (y);
+  \path (-1.2, 0.2) coordinate (x) node {$f($\small\begin{CJK*}{UTF8}{gbsn}文内容\end{CJK*}$) = $};
+  \path (-0.05, 0.2) coordinate [draw, gray, circle, inner sep=0.9pt] (y);
   \draw [gray]
-        (0.15, +0.4) circle [radius=1.2pt]
+        (-0.05, +0.4) circle [radius=1.2pt]
         +(0, -0.4) circle [radius=1.2pt]
         +(+0.2, -0.4) circle [radius=1.2pt]
         +(0.4, -0.2) circle [radius=1.2pt]
         +(0.6, -0.2) circle [radius=1.2pt]
         +(0.6, 0) circle [radius=1.2pt]
         +(0.6, -0.4) circle [radius=1.2pt];
-  \draw (-0.5, -0.8) node {\textbf{Translation}\textsuperscript{$\star$}};
-  \draw (0, -1.1);
+  \draw (-0.7, -0.8) node {\textbf{Translation}\textsuperscript{$\star$}};
+  \draw (0.5, -1.1);
 \end{tikzpicture}
+\pause
 
 \vspace{0.6cm}
 
