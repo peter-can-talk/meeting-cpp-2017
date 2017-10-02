@@ -18,8 +18,8 @@ cv::Mat load_image(const char* image_path) {
   cv::Mat image = cv::imread(image_path, CV_LOAD_IMAGE_COLOR);
   image.convertTo(image, CV_32FC3);
   cv::normalize(image, image, 0, 1, cv::NORM_MINMAX);
-  std::cerr << "Input Image: " << image.rows << " x " << image.cols << " x 3"
-            << std::endl;
+  std::cerr << "Input Image: " << image.rows << " x " << image.cols << " x "
+            << image.channels() << std::endl;
   return image;
 }
 
@@ -56,7 +56,7 @@ int main(int argc, const char* argv[]) {
 
   cudaSetDevice(gpu_id);
 
-  cudnnHandle_t cudnn{nullptr};
+  cudnnHandle_t cudnn;
   cudnnCreate(&cudnn);
 
   cudnnTensorDescriptor_t input_descriptor;
@@ -121,9 +121,8 @@ int main(int argc, const char* argv[]) {
                                           convolution_descriptor,
                                           output_descriptor,
                                           CUDNN_CONVOLUTION_FWD_PREFER_FASTEST,
-                                          0,
+                                          /*memoryLimitInBytes=*/0,
                                           &convolution_algorithm));
-  // CUDNN_CONVOLUTION_FWD_ALGO_IMPLICIT_GEMM
 
   size_t workspace_bytes{0};
   checkCUDNN(cudnnGetConvolutionForwardWorkspaceSize(cudnn,
@@ -151,7 +150,7 @@ int main(int argc, const char* argv[]) {
   cudaMemset(d_output, 0, image_bytes);
 
   // clang-format off
-  float kernel_template[3][3] = {
+  const float kernel_template[3][3] = {
     {1, 1, 1},
     {1, -8, 1},
     {1, 1, 1}
