@@ -5,8 +5,12 @@
   \tikzset{box/.style={draw, rectangle, text width=3cm, text height=1cm}}
 
   % Model
-  \path (0, 0) coordinate (r)
-        node {\includegraphics[scale=0.1]{cppcon-logo}};
+  \node (r) at (0, 0) {\includegraphics[scale=0.075]{bjarne}};
+  \draw [white, rounded corners=6pt, line width=9pt]
+      (r.north west) --
+      (r.north east) --
+      (r.south east) --
+      (r.south west) -- cycle;
 
   \foreach \x/\l/\h in {0/Convolution/0,%
                      1/Convolution/0,%
@@ -31,7 +35,7 @@
   \path (8, 0) coordinate (P) node {$\mathbf{P(\text{real})}$};
 
   % Edges;
-  \draw [->, shorten <=0.75cm] (r) -- (1.75, 0);
+  \draw [->] (r) -- (1.75, 0);
   \draw [->, shorten >=0.75cm] (6.35, 0) -- (P);
 \end{tikzpicture}
 \end{slide}
@@ -44,14 +48,19 @@
 
   % Image, W, s
   \onslide<1->{
-    \path (-1, -0.5)
-          coordinate (i) node {\includegraphics[scale=0.06]{cppcon-logo}};
+    \node (i) at (-0.3, 0) {\includegraphics[scale=0.06]{bjarne}};
+    \draw [white, rounded corners=6pt, line width=9pt]
+        (i.north west) --
+        (i.north east) --
+        (i.south east) --
+        (i.south west) -- cycle;
+
     \path (1.5, -1) coordinate [var] (Wc) node {\small$\mathbf{W_c}$};
     \path (3, 0) coordinate [var] (s) node {\small$\mathbf{s}$};
     \path (1.5, 1.5) coordinate [op] (conv2d) node {\tiny\textbf{Conv2D}};
 
     % Edges
-    \draw [-stealth, shorten <=0.4cm, bend left] (i) -- (conv2d);
+    \draw [-stealth, shorten <=-1mm] (i) -- (conv2d);
     \draw [-stealth] (Wc) -- (conv2d);
     \draw [-stealth] (s) -- (conv2d);
   }

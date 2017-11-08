@@ -6,16 +6,21 @@
 \begin{slide}{Graph Layer: TensorFlow}
   \begin{columns}
     \begin{column}{0.5\textwidth}
+      \vspace{0.7cm}
       \begin{itemize}
         \item Google (2015)
-        \item Static Graphs
+        \item Static Graphs\textsuperscript{$\star$}
         \item GPUs \cmark
         \item Distributed \cmark
         \item C++ API \xmark
         \item Very ``Deployable''
+        \item Often Too Low-Level
       \end{itemize}
+
+      \vspace{0.5cm}
+      {\footnotesize \textsuperscript{$\star$} Dynamic with \textit{TF Eager} (Oct. 2017)}
     \end{column}
-    \begin{column}{0.5\textwidth}
+    \begin{column}{0.4\textwidth}
       \includegraphics[scale=0.2]{tensorflow}
     \end{column}
   \end{columns}
@@ -23,6 +28,7 @@
 
 \begin{slide}{Graph Layer: PyTorch/Caffe2}
   \begin{columns}
+    \hspace{0.2cm}
     \begin{column}{0.4\textwidth}
       \centering
       \hspace{-1.2cm}\includegraphics[scale=0.4]{pytorch}
@@ -56,18 +62,35 @@
 
 \begin{slide}{Graph Layer: MXNet}
   \begin{columns}
-    \begin{column}{0.5\textwidth}
+    \begin{column}{0.6\textwidth}
       \begin{itemize}
         \item Community, then Amazon
         \item Apache Incubator
         \item Highly Modular
         \item GPUs \cmark
         \item Distributed \cmark
-        \item APIs for many languages (C++ \cmark)
+        \item Python, R, Scala, Julia, C++ \cmark
       \end{itemize}
     \end{column}
-    \begin{column}{0.5\textwidth}
+    \begin{column}{0.4\textwidth}
       \includegraphics[scale=0.2]{mxnet}
+    \end{column}
+  \end{columns}
+\end{slide}
+
+\begin{slide}{Graph Layer: Dlib}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item No Corporate Backing
+        \item Mature and Reliable
+        \item Pure C++ \cmark
+        \item GPUs \cmark
+        \item Distributed \xmark
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \includegraphics[scale=0.2]{dlib}
     \end{column}
   \end{columns}
 \end{slide}

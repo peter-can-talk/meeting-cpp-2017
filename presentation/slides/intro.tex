@@ -2,19 +2,31 @@
 % Intro
 
 \begin{slide}{Strategy}
-  \pause
+\end{slide}
+
+\begin{slide}{Strategy}
   \begin{tikzpicture}[thick]
     % Task Layer
-    \foreach \y/\l/\c in {1/Hardware/Red,%
-                          2/Kernel/llvmblue,%
-                          3/Op/ProcessBlue,%
-                          4/Graph/orange,%
-                          5/Layer/Green,%
-                          6/Model/Goldenrod,
-                          7/Task/Purple} {
+    \foreach \y/\l/\c in {0/Hardware/Red,%
+                          1/Kernel/llvmblue,%
+                          2/Op/ProcessBlue,%
+                          3/Graph/orange,%
+                          4/Layer/Green,%
+                          5/Model/Goldenrod,
+                          6/Task/Purple} {
       \draw [fill=\c] (0, {\y * 0.8})
             rectangle ++(3, 0.8) node [midway] {\l};
     }
+
+    \onslide<2->{
+      \draw [->] (-0.5, 5.6) -- (-0.5, 0)
+            node [midway, left] {Theory};
+    }
+    \onslide<3->{
+      \draw [<-] (3.5, 5.6) -- (3.5, 0)
+            node [midway, right] {Practice};
+    }
+
   \end{tikzpicture}
 
   \vspace{0.4cm}

@@ -8,21 +8,34 @@
   % Model
   \path (0, 0) coordinate (z) node {$\mathbf{z}$};
   \path (1.75, 0) coordinate [box] (G) node {Generator};
-  \path (4.25, -0.8) coordinate (f)
-        node {\includegraphics[scale=0.1]{cppcon-logo-blurry}};
-  \path (4.25, +0.8) coordinate (r)
-        node {\includegraphics[scale=0.1]{cppcon-logo}};
+  \node (f) at (4.25, -0.7) {\includegraphics[scale=0.075]{bjarne-blurry}};
+  \draw [white, rounded corners=6pt, line width=9pt]
+      (f.north west) --
+      (f.north east) --
+      (f.south east) --
+      (f.south west) -- cycle;
+
+  \node (r) at (4.25, +0.7) {\includegraphics[scale=0.075]{bjarne}};
+  \draw [white, rounded corners=6pt, line width=9pt]
+      (r.north west) --
+      (r.north east) --
+      (r.south east) --
+      (r.south west) -- cycle;
+
   \path (7.25, 0) coordinate [box, text width=2.2cm] (D) node {Discriminator};
-  \path (5.45, 0) coordinate (_);
+  \path (5.7, 0) coordinate (_);
   \path (9.75, 0) coordinate (P) node {$\mathbf{P(\text{real})}$};
 
   % Edges
   \draw [->, shorten <=0.25cm] (z) -- (G);
-  \draw [->, shorten >=0.7cm] (G) -- (f);
-  \draw [shorten <=0.775cm] (f) -- (_);
-  \draw [shorten <=0.75cm] (r) -- (_);
+  \draw [->] (G) edge [out=0, in=180] (f);
+  \draw (f) edge [out=0, in=180] (_);
+  \draw (r) edge [out=0, in=180] (_);
   \draw [->] (_) -- (D);
   \draw [->, shorten >=0.75cm] (D) -- (P);
+
+  % Label
+  \draw (5.5, -2.4) node {\textbf{Generative Adversarial Networks (GAN)}};
 \end{tikzpicture}
 }
 
@@ -31,13 +44,18 @@
   \tikzset{box/.style={draw, rectangle, text width=3cm, text height=1cm}}
 
   % Model
-  \path (0, 0) coordinate (r)
-        node {\includegraphics[scale=0.1]{cppcon-logo}};
+  \node (r) at (0, 0) {\includegraphics[scale=0.075]{bjarne}};
+  \draw [white, rounded corners=6pt, line width=9pt]
+      (r.north west) --
+      (r.north east) --
+      (r.south east) --
+      (r.south west) -- cycle;
+
   \path (4, 0) coordinate [box] (D) node {Discriminator};
   \path (8, 0) coordinate (P) node {$\mathbf{P(\text{real})}$};
 
   % Edges;
-  \draw [->, shorten <=0.75cm] (r) -- (D);
+  \draw [->] (r) -- (D);
   \draw [->, shorten >=0.75cm] (D) -- (P);
 \end{tikzpicture}
 }
@@ -47,8 +65,12 @@
   \tikzset{box/.style={draw, rectangle, text width=3cm, text height=1cm}}
 
   % Model
-  \path (0, 0) coordinate (r)
-        node {\includegraphics[scale=0.1]{cppcon-logo}};
+  \node (r) at (0, 0) {\includegraphics[scale=0.075]{bjarne}};
+  \draw [white, rounded corners=6pt, line width=9pt]
+      (r.north west) --
+      (r.north east) --
+      (r.south east) --
+      (r.south west) -- cycle;
 
   \foreach \x/\l in {0/Convolution,%
                      1/Convolution,%
@@ -64,7 +86,7 @@
   \path (8, 0) coordinate (P) node {$\mathbf{P(\text{real})}$};
 
   % Edges;
-  \draw [->, shorten <=0.75cm] (r) -- (1.75, 0);
+  \draw [->] (r) -- (1.75, 0);
   \draw [->, shorten >=0.75cm] (6.35, 0) -- (P);
 \end{tikzpicture}
 }

@@ -8,6 +8,8 @@
 \documentclass[xcolor={dvipsnames}]{beamer}
 
 \definecolor{llvmblue}{RGB}{60, 66, 80}
+\definecolor{fb}{RGB}{68,105,176}
+\definecolor{fblite}{RGB}{139,157,195}
 
 \usetheme{default}
 \usecolortheme[named=orange]{structure}
@@ -34,7 +36,7 @@
 \usepackage{textcomp}
 \usepackage{anyfontsize}
 \usepackage{cancel}
-\usepackage{tcolorbox}
+\usepackage[many]{tcolorbox}
 
 \usepackage{pifont}
 \newcommand{\cmark}{\ding{51}}
@@ -143,8 +145,7 @@
   \parbox{\linewidth}{%
     \vspace*{-15pt}%
     \scriptsize
-    Peter Goldsborough\hspace{1.5cm}%
-    {\footnotesize\texttt{Deep Learning w/ C++}}\hfill%
+    Peter Goldsborough\hfill%
     \insertpagenumber}%
 }
 \setbeamertemplate{navigation symbols}{}

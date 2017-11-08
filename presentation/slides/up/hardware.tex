@@ -49,19 +49,18 @@
 % \end{slide}
 
 \begin{slide}{Hardware: GPU}
-  \pause
   \begin{columns}
     \begin{column}{0.5\textwidth}
     \centering
       \begin{tikzpicture}
         \node [inner sep=0] (titan) at (-3, 0)
-              {\includegraphics[scale=0.08]{titan-x}};
+              {\includegraphics[scale=0.075]{titan-x}};
         \draw [white, rounded corners=5pt, line width=5pt]
             (titan.north west) --
             (titan.north east) --
             (titan.south east) --
             (titan.south west) -- cycle;
-        \draw (titan)+(0, -2.2) node {\textbf{Titan X}};
+        \draw (titan)+(0, -2.1) node {\textbf{Titan X}};
       \end{tikzpicture}
     \end{column}
     \begin{column}{0.5\textwidth}
@@ -113,7 +112,7 @@
     \begin{column}{0.55\textwidth}
       \begin{itemize}
         \item 8 NVIDIA Tesla P100 GPUs
-        \item NVLink (12x faster than PCIe)
+        \item NVLink (3x faster than PCIe)
         \item 16 GB RAM
         \item 10.6 TFLOPS/GPU
         \item Reduced Precision Computing
@@ -148,78 +147,79 @@
   \end{columns}
 \end{slide}
 
-% \begin{slide}{Hardware: IPU}
-%   \begin{tikzpicture}
-%     \tikzset{mem/.style={%
-%       draw, fill=Red, rectangle, text width=0.3mm, text height=2.25mm}}
-%     \tikzset{proc/.style={%
-%       draw, fill=Goldenrod, circle, inner sep=1.2mm}}
-%
-%     \foreach \a in {0, 10, ..., 360} {
-%       % Memory
-%       \onslide<2->{
-%         \path (0, 0)+(\a:2.3cm)
-%               coordinate [mem, rotate={\a+90}] (m\a)
-%               node [rotate={\a-90}] {\tiny\textbf{M}};
-%       }
-%
-%       % Processor
-%       \onslide<2>{
-%         \path (0, 0)+(\a:2.9cm) coordinate [proc] (p\a)
-%               node [rotate={\a-90}] {\tiny\textbf{P}};
-%       }
-%       \onslide<3>{
-%         \path (0, 0)+(\a:2.9cm) coordinate [proc, fill=white] (p\a)
-%               node [rotate={\a-90}] {\tiny\textbf{P}};
-%       }
-%
-%       % Exchange
-%       \onslide<2>{
-%         \draw [semithick] (0, 0)
-%               circle [radius=1.65cm] node [black] {Compute};
-%       }
-%       \onslide<3>{
-%         \fill [llvmblue, semithick] (0, 0)
-%               circle [radius=1.65cm] node [white] {Communication};
-%       }
-%
-%       \onslide<2->{
-%         % P - M
-%         \draw (p\a) -- (m\a);
-%
-%         % M - Exchange
-%         \draw [stealth-stealth, shorten >=0.5pt, shorten <=0.5pt]
-%               (m\a) -- ++(\a:-0.65cm);
-%
-%         \node at (0, -3.7) {\textbf{Bulk Synchronous Parallelism}};
-%       }
-%     }
-%   \end{tikzpicture}
-% \end{slide}
-%
-% \begin{slide}{Hardware: IPU}
-%   \begin{columns}
-%     \begin{column}{0.5\textwidth}
-%         \begin{itemize}
-%           \item Startup from Bristol (UK)
-%           \item Graphcore Colossus
-%           \item TBR later this year
-%           \item 1000 Processors/Chip
-%           \item Mixed Precision Arithmetic
-%         \end{itemize}
-%     \end{column}
-%     \begin{column}{0.5\textwidth}
-%       \centering
-%       \begin{tikzpicture}
-%         \node [inner sep=0] (pic) at (0, 0)
-%               {\includegraphics[scale=0.25]{graphcore}};
-%         \draw [white, rounded corners=5pt, line width=5pt]
-%             (pic.north west) --
-%             (pic.north east) --
-%             (pic.south east) --
-%             (pic.south west) -- cycle;
-%         \draw (pic)+(0, -2.7) node {\textbf{Graphcore}};
-%       \end{tikzpicture}
-%     \end{column}
-%   \end{columns}
-% \end{slide}
+\begin{slide}{Hardware: IPU}
+  \begin{tikzpicture}
+    \tikzset{mem/.style={%
+      draw, fill=Red, rectangle, text width=0.3mm, text height=2.25mm}}
+    \tikzset{proc/.style={%
+      draw, fill=Goldenrod, circle, inner sep=1.2mm}}
+
+    \foreach \a in {0, 10, ..., 360} {
+      % Memory
+      \onslide<2->{
+        \path (0, 0)+(\a:2.3cm)
+              coordinate [mem, rotate={\a+90}] (m\a)
+              node [rotate={\a-90}] {\tiny\textbf{M}};
+      }
+
+      % Processor
+      \onslide<2>{
+        \path (0, 0)+(\a:2.9cm) coordinate [proc] (p\a)
+              node [rotate={\a-90}] {\tiny\textbf{P}};
+      }
+      \onslide<3>{
+        \path (0, 0)+(\a:2.9cm) coordinate [proc, fill=white] (p\a)
+              node [rotate={\a-90}] {\tiny\textbf{P}};
+      }
+
+      % Exchange
+      \onslide<2>{
+        \draw [semithick] (0, 0)
+              circle [radius=1.65cm] node [black] {Compute};
+      }
+      \onslide<3>{
+        \fill [llvmblue, semithick] (0, 0)
+              circle [radius=1.65cm] node [white] {Communication};
+      }
+
+      \onslide<2->{
+        % P - M
+        \draw (p\a) -- (m\a);
+
+        % M - Exchange
+        \draw [stealth-stealth, shorten >=0.5pt, shorten <=0.5pt]
+              (m\a) -- ++(\a:-0.65cm);
+
+        \node at (0, -3.7) {\textbf{Bulk Synchronous Parallelism}};
+      }
+    }
+  \end{tikzpicture}
+\end{slide}
+
+\begin{slide}{Hardware: IPU}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+        \begin{itemize}
+          \item Startup from Bristol (UK)
+          \item Graphcore \textit{Colossus}
+          \item TBR later this year
+          \item $>$1000 Processors/Chip
+          \item Mixed Precision Arithmetic
+          \item 2x $-$ 200x faster than GPUs
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \node [inner sep=0] (pic) at (0, 0)
+              {\includegraphics[scale=0.25]{graphcore}};
+        \draw [white, rounded corners=5pt, line width=5pt]
+            (pic.north west) --
+            (pic.north east) --
+            (pic.south east) --
+            (pic.south west) -- cycle;
+        \draw (pic)+(0, -2.7) node {\textbf{Graphcore}};
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{slide}

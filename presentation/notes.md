@@ -129,3 +129,22 @@ This is about __algorithms__, kernel layer is about __implementations__
 
 - Pretrained models
 - Show how to load a pretrained tensorflow model in C++
+
+## Notes on Speaking
+
+- Do give intro about yourself
+- Plan first few sentences (again)
+- Fake GAN images should look more crap
+- Careful about word repetition: generate with generator, initialize initially
+- Careful about any words that you haven't introduced yet
+- Don't swallow your words
+- CS metaphors are good
+- Don't do the gay thing with your hand
+- Know your slides!!! No surprises!
+- Don't put your hand in front of your mouth
+- Mention that you're going down, then back up!!!!!!!!
+- TF Eager
+- Add a slide about DLIB
+- Show DLIB while MXNet is training
+- Know more things about Volta, NVLink
+- Use progressive gan in stead of BEGAN images

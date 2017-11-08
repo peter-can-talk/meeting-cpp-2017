@@ -6,7 +6,7 @@ Example of training a neural network with `dlib`.
 
 Prerequisites:
 
-1. DLib: http://dlib.net,
+1. Dlib: http://dlib.net,
 2. OpenCV2 (consult your package manager).
 
 Then: `make`.

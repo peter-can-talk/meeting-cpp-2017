@@ -101,15 +101,18 @@
     \foreach \i in {1, 2, 3, 6, 7, 8} {
         \draw ({\i * 0.45 - 0.2}, -0.2) node {$\vdots$};
     }
-    \foreach \x in {0, ..., 2} {
-      \draw ({\x * 0.45}, -1.1) rectangle ++(0.45, 0.45)
-            node [midway] {\scriptsize$x_{\scaleto{\x}{2.5pt}}$};
-    }
     \draw (1.845, -0.2) node {$\ddots$};
-    \draw (1.845, -0.855) node {$\dots$};
-    \foreach \x in {24, ..., 26} {
-      \draw ({(\x - 19) * 0.45}, -1.1) rectangle ++(0.45, 0.45)
-            node [midway] {\scriptsize$x_{\scaleto{\x}{2.5pt}}$};
+
+    \foreach \i in {0, 1, 2} {
+      \foreach \x in {0, ..., 2} {
+        \draw ({\x * 0.45}, {-1.1 - \i * 0.45}) rectangle ++(0.45, 0.45)
+              node [midway] {\scriptsize$x_{\scaleto{\x}{2.5pt}}$};
+      }
+      \draw (1.845, {-0.855 - \i * 0.45}) node {$\dots$};
+      \foreach \x in {24, ..., 26} {
+        \draw ({(\x - 19) * 0.45}, {-1.1  - \i * 0.45}) rectangle ++(0.45, 0.45)
+              node [midway] {\scriptsize$x_{\scaleto{\x}{2.5pt}}$};
+      }
     }
   }
 
