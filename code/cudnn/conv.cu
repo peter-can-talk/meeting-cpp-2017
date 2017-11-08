@@ -59,6 +59,7 @@ int main(int argc, const char* argv[]) {
   cudnnHandle_t cudnn;
   cudnnCreate(&cudnn);
 
+  // Input
   cudnnTensorDescriptor_t input_descriptor;
   checkCUDNN(cudnnCreateTensorDescriptor(&input_descriptor));
   checkCUDNN(cudnnSetTensor4dDescriptor(input_descriptor,
@@ -69,6 +70,7 @@ int main(int argc, const char* argv[]) {
                                         /*image_height=*/image.rows,
                                         /*image_width=*/image.cols));
 
+  // Kernel
   cudnnFilterDescriptor_t kernel_descriptor;
   checkCUDNN(cudnnCreateFilterDescriptor(&kernel_descriptor));
   checkCUDNN(cudnnSetFilter4dDescriptor(kernel_descriptor,
@@ -79,6 +81,7 @@ int main(int argc, const char* argv[]) {
                                         /*kernel_height=*/3,
                                         /*kernel_width=*/3));
 
+  // Convolution
   cudnnConvolutionDescriptor_t convolution_descriptor;
   checkCUDNN(cudnnCreateConvolutionDescriptor(&convolution_descriptor));
   checkCUDNN(cudnnSetConvolution2dDescriptor(convolution_descriptor,
@@ -123,6 +126,9 @@ int main(int argc, const char* argv[]) {
                                           CUDNN_CONVOLUTION_FWD_PREFER_FASTEST,
                                           /*memoryLimitInBytes=*/0,
                                           &convolution_algorithm));
+  // CUDNN_CONVOLUTION_FWD_ALGO_GEMM
+  // CUDNN_CONVOLUTION_FWD_ALGO_FFT
+  // CUDNN_CONVOLUTION_FWD_ALGO_WINOGRAD
 
   size_t workspace_bytes{0};
   checkCUDNN(cudnnGetConvolutionForwardWorkspaceSize(cudnn,
